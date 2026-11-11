@@ -1,36 +1,35 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# GermanLingua
 
-## Getting Started
+Site-ul școlii de limba germană GermanLingua (Chișinău), în 4 limbi: germană, română, engleză și rusă.
 
-First, run the development server:
+Construit cu Next.js, TypeScript și Tailwind CSS, cu animații GSAP și derulare lină Lenis.
 
-```bash
+## Pornire pe calculator
+
+```
+npm install
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Apoi deschide http://localhost:3000.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Unde se schimbă lucrurile
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+| Ce vrei să schimbi | Fișier |
+| --- | --- |
+| Textele, pe limbi | `src/i18n/dictionaries/ro.ts`, `de.ts`, `en.ts`, `ru.ts` |
+| Telefon, e-mail, rețele sociale, imagini | `src/data/site.ts` |
+| Lista cursurilor și prețurile | `src/data/courses.ts` |
+| Culorile și fonturile | `src/app/globals.css` (blocul `@theme`) |
+| Paginile | `src/app/[lang]/` |
 
-## Learn More
+## Formulare
 
-To learn more about Next.js, take a look at the following resources:
+Formularele trimit cererile la `/api/lead`. Ca ele să ajungă într-un Google Sheet sau pe e-mail,
+setează `LEAD_WEBHOOK_URL` (vezi `.env.example`).
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## Imagini
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+Logo-ul și fotografiile se încarcă deocamdată de pe site-ul actual, germanlingua.md.
+Înainte ca domeniul să fie mutat pe acest site, ele trebuie copiate în `public/images`
+și adresele din `src/data/site.ts` schimbate.
