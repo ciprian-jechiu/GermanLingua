@@ -141,6 +141,46 @@ body {
 }
 }
 
+/* Rânduri care se derulează cu degetul pe telefon și devin grilă pe ecrane mari */
+@layer components {
+  .snap-row {
+    display: flex;
+    gap: 14px;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+    margin-inline: -20px;
+    padding: 4px 20px 18px;
+    scroll-padding-inline: 20px;
+  }
+  .snap-row::-webkit-scrollbar {
+    display: none;
+  }
+  .snap-row > * {
+    flex: 0 0 82%;
+    scroll-snap-align: start;
+  }
+  @media (min-width: 640px) {
+    .snap-row {
+      display: grid;
+      gap: 28px;
+      overflow: visible;
+      margin-inline: 0;
+      padding: 0;
+    }
+    .snap-row > * {
+      flex: initial;
+    }
+  }
+}
+@media (max-width: 639px) {
+  .snap-row [data-reveal] {
+    opacity: 1;
+    transform: none;
+  }
+}
+
 /* Apariții la derulare */
 [data-reveal] {
   opacity: 0;

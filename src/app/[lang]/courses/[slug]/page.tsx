@@ -34,30 +34,30 @@ export default async function CoursePage({ params }: PageProps<"/[lang]/courses/
     <>
       <PageHero lang={lang} home={dict.nav.home} crumb={dict.nav.courses} title={c.title} lead={c.level} />
 
-      <div className="container-x grid gap-12 py-20 lg:grid-cols-[1fr_420px] lg:gap-16 lg:py-24">
+      <div className="container-x grid gap-10 py-12 lg:grid-cols-[1fr_420px] lg:gap-16 lg:py-24">
         <div>
-          <p data-reveal className="text-xl leading-relaxed text-ink sm:text-[22px]">
+          <p data-reveal className="text-[18px] leading-relaxed text-ink sm:text-[22px]">
             {c.intro}
           </p>
 
-          <h2 data-reveal className="mb-6 mt-14 text-3xl font-bold tracking-tight">
+          <h2 data-reveal className="mb-5 mt-10 text-[24px] font-bold tracking-tight sm:mb-6 sm:mt-14 sm:text-3xl">
             {dict.coursePage.offers}
           </h2>
-          <ul className="grid gap-4 sm:grid-cols-2">
+          <ul className="grid gap-3 sm:grid-cols-2 sm:gap-4">
             {c.learn.map((item, i) => (
-              <li key={item} data-reveal data-delay={(i % 2) + 1} className="flex gap-4 rounded-[22px] border border-line p-5 text-[16px] leading-relaxed">
+              <li key={item} data-reveal data-delay={(i % 2) + 1} className="flex gap-4 rounded-[18px] border border-line p-4 text-[15.5px] leading-relaxed sm:rounded-[22px] sm:p-5 sm:text-[16px]">
                 <span className="outline-num shrink-0 text-3xl">0{i + 1}</span>
                 {item}
               </li>
             ))}
           </ul>
 
-          <h2 data-reveal className="mb-6 mt-14 text-3xl font-bold tracking-tight">
+          <h2 data-reveal className="mb-5 mt-10 text-[24px] font-bold tracking-tight sm:mb-6 sm:mt-14 sm:text-3xl">
             {dict.coursePage.forWho}
           </h2>
           <ul className="space-y-3.5">
             {c.forWho.map((item) => (
-              <li key={item} data-reveal className="flex items-start gap-4 text-[17px]">
+              <li key={item} data-reveal className="flex items-start gap-3.5 text-[16px] sm:gap-4 sm:text-[17px]">
                 <span className="mt-0.5 grid h-7 w-7 shrink-0 place-items-center rounded-full bg-brand text-white">
                   <Icon name="check" size={16} />
                 </span>
@@ -66,8 +66,8 @@ export default async function CoursePage({ params }: PageProps<"/[lang]/courses/
             ))}
           </ul>
 
-          <div data-reveal className="mt-14 rounded-[28px] bg-mist p-8">
-            <h2 className="text-2xl font-bold">{dict.coursePage.included}</h2>
+          <div data-reveal className="mt-10 rounded-[22px] bg-mist p-6 sm:mt-14 sm:rounded-[28px] sm:p-8">
+            <h2 className="text-[21px] font-bold sm:text-2xl">{dict.coursePage.included}</h2>
             <ul className="mt-5 grid gap-3 sm:grid-cols-3">
               {dict.coursePage.includedItems.map((item, i) => (
                 <li key={item} className="flex items-start gap-3 text-[15px] font-medium">
@@ -80,20 +80,20 @@ export default async function CoursePage({ params }: PageProps<"/[lang]/courses/
           </div>
         </div>
 
-        <aside className="space-y-7 lg:sticky lg:top-28 lg:self-start">
+        <aside className="space-y-5 sm:space-y-7 lg:sticky lg:top-28 lg:self-start">
           <div data-reveal="right" className="on-dark overflow-hidden rounded-[28px] bg-ink text-white shadow-card">
-            <h2 className="bg-brand px-7 py-5 text-xl font-bold">{dict.coursePage.facts}</h2>
-            <dl className="divide-y divide-white/10 px-7">
+            <h2 className="bg-brand px-6 py-4 text-lg font-bold sm:px-7 sm:py-5 sm:text-xl">{dict.coursePage.facts}</h2>
+            <dl className="divide-y divide-white/10 px-6 sm:px-7">
               {facts.map((fact) => (
-                <div key={fact.label} className="flex items-baseline justify-between gap-5 py-4">
-                  <dt className="text-sm text-white/60">{fact.label}</dt>
-                  <dd className="text-right text-[15px] font-semibold">{fact.value}</dd>
+                <div key={fact.label} className="py-3.5 sm:flex sm:items-baseline sm:justify-between sm:gap-5 sm:py-4">
+                  <dt className="text-[13px] text-white/60 sm:text-sm">{fact.label}</dt>
+                  <dd className="mt-0.5 text-[15px] font-semibold sm:mt-0 sm:text-right">{fact.value}</dd>
                 </div>
               ))}
             </dl>
           </div>
 
-          <div data-reveal="right" data-delay="1" className="rounded-[28px] border border-line p-7 shadow-soft">
+          <div data-reveal="right" data-delay="1" className="rounded-[24px] border border-line p-6 shadow-soft sm:rounded-[28px] sm:p-7">
             <h2 className="text-xl font-bold">{dict.form.title}</h2>
             <p className="mb-5 mt-2 text-[15px] text-muted">{dict.form.subtitle}</p>
             <LeadForm form={dict.form} lang={lang} source="course" course={course.slug} />
@@ -102,11 +102,11 @@ export default async function CoursePage({ params }: PageProps<"/[lang]/courses/
       </div>
 
       <section className="bg-mist">
-        <div className="container-x py-20">
-          <h2 data-reveal className="mb-9 text-3xl font-bold tracking-tight">
+        <div className="container-x py-14 lg:py-20">
+          <h2 data-reveal className="mb-6 text-[24px] font-bold tracking-tight sm:mb-9 sm:text-3xl">
             {dict.coursePage.other}
           </h2>
-          <div className="grid gap-7 sm:grid-cols-2 lg:grid-cols-3">
+          <div className="snap-row sm:grid-cols-2 lg:grid-cols-3">
             {others.map((other, i) => (
               <CourseCard key={other.slug} course={other} lang={lang} dict={dict} delay={i + 1} />
             ))}

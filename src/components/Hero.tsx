@@ -37,7 +37,7 @@ export default function Hero({ hero, images, enrollHref, coursesHref }: Props) {
   return (
     <section className="on-dark relative isolate overflow-hidden bg-ink text-white">
       {/* Fotografia stă în dreapta, textul în stânga, ca să rămână clară și neacoperită. */}
-      <div aria-hidden className="absolute inset-y-0 right-0 -z-20 w-full overflow-hidden lg:w-[56%]">
+      <div aria-hidden className="relative h-[250px] w-full overflow-hidden sm:h-[340px] lg:absolute lg:inset-y-0 lg:right-0 lg:-z-20 lg:h-auto lg:w-[56%]">
         {images.map((src, i) => (
           <div
             key={src}
@@ -46,25 +46,25 @@ export default function Hero({ hero, images, enrollHref, coursesHref }: Props) {
             <div className="kenburns h-full w-full bg-cover bg-[position:30%_20%]" style={{ backgroundImage: `url(${src})` }} />
           </div>
         ))}
-        <div className="absolute inset-0 bg-ink/75 lg:hidden" />
+        <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(21,22,27,0)_50%,#15161b_100%)] lg:hidden" />
         <div className="absolute inset-0 hidden bg-[linear-gradient(90deg,#15161b_0%,rgba(21,22,27,0.45)_22%,rgba(21,22,27,0)_50%)] lg:block" />
       </div>
 
-      <div className="container-x relative pb-44 pt-20 md:pb-56 md:pt-28 lg:pt-36">
+      <div className="container-x relative pb-36 pt-5 md:pb-56 md:pt-10 lg:pt-36">
         <div ref={textRef} className="max-w-[720px] lg:max-w-[560px] lg:pl-10">
-          <p data-hero className="mb-5 inline-flex items-center gap-3 text-sm font-semibold uppercase tracking-[0.18em] text-gold">
+          <p data-hero className="mb-3 inline-flex items-center gap-3 text-[12px] font-semibold uppercase tracking-[0.16em] text-gold sm:mb-5 sm:text-sm">
             <span className="h-px w-10 bg-gold" />
             {slide.tag}
           </p>
-          <h1 data-hero className="text-[40px] font-bold leading-[1.08] tracking-tight sm:text-6xl lg:text-[60px]">
+          <h1 data-hero className="text-[33px] font-bold leading-[1.1] tracking-tight sm:text-6xl lg:text-[60px]">
             {slide.a}
             <span className="hl">{slide.hl}</span>
             {slide.b}
           </h1>
-          <p data-hero className="mt-6 max-w-[560px] text-lg leading-relaxed text-white/80">
+          <p data-hero className="mt-4 max-w-[560px] text-[16px] leading-relaxed text-white/80 sm:mt-6 sm:text-lg">
             {slide.text}
           </p>
-          <div data-hero className="mt-9 flex flex-wrap gap-4">
+          <div data-hero className="mt-7 grid gap-3 sm:mt-9 sm:flex sm:flex-wrap sm:gap-4">
             <Link href={enrollHref} className="btn btn-brand">
               {hero.primary}
               <Icon name="arrow" size={18} />
@@ -76,9 +76,10 @@ export default function Hero({ hero, images, enrollHref, coursesHref }: Props) {
           </div>
         </div>
 
-        <div className="mt-10 flex items-center gap-3 lg:hidden">
-          <SliderButton label={hero.prev} icon="arrowLeft" onClick={() => go(-1)} />
-          <SliderButton label={hero.next} icon="arrow" onClick={() => go(1)} />
+        <div className="mt-6 flex gap-2 lg:hidden" aria-hidden>
+          {hero.slides.map((s, i) => (
+            <span key={s.tag} className={`h-1.5 rounded-full transition-all duration-500 ${i === index ? "w-8 bg-gold" : "w-3 bg-white/30"}`} />
+          ))}
         </div>
       </div>
 

@@ -14,10 +14,10 @@ export default function Footer({ lang, dict }: { lang: Locale; dict: Dict }) {
   const linkClass = "text-white/70 transition-colors hover:text-gold";
 
   return (
-    <footer className="on-dark relative overflow-hidden bg-ink text-white">
+    <footer className="on-dark relative overflow-hidden bg-ink pb-[76px] text-white lg:pb-0">
       <div aria-hidden className="pointer-events-none absolute -right-40 -top-40 h-[420px] w-[420px] rounded-full bg-brand/25 blur-[120px]" />
-      <div className="container-x relative grid gap-12 py-16 md:grid-cols-2 lg:grid-cols-[1.3fr_0.8fr_1fr_1fr_1.2fr] lg:py-20">
-        <div>
+      <div className="container-x relative grid grid-cols-2 gap-x-6 gap-y-10 py-12 lg:grid-cols-[1.3fr_0.8fr_1fr_1fr_1.2fr] lg:gap-12 lg:py-20">
+        <div className="col-span-2 lg:col-span-1">
           {/* eslint-disable-next-line @next/next/no-img-element */}
           <img src={media.logoInverted} alt={site.name} className="h-12 w-auto" />
           <p className="mt-5 max-w-xs text-[15px] leading-relaxed text-white/70">{dict.footer.about}</p>
@@ -32,8 +32,8 @@ export default function Footer({ lang, dict }: { lang: Locale; dict: Dict }) {
         </div>
 
         <div>
-          <h3 className="mb-5 text-lg font-semibold">{dict.footer.company}</h3>
-          <ul className="space-y-3 text-[15px]">
+          <h3 className="mb-4 text-[17px] font-semibold lg:mb-5 lg:text-lg">{dict.footer.company}</h3>
+          <ul className="space-y-2.5 text-[14.5px] lg:space-y-3 lg:text-[15px]">
             <li><Link className={linkClass} href={href()}>{dict.nav.home}</Link></li>
             <li><Link className={linkClass} href={href("/courses")}>{dict.nav.allCourses}</Link></li>
             <li><Link className={linkClass} href={href("/about")}>{dict.nav.about}</Link></li>
@@ -44,8 +44,8 @@ export default function Footer({ lang, dict }: { lang: Locale; dict: Dict }) {
 
         {cols.map((col) => (
           <div key={col.label}>
-            <h3 className="mb-5 text-lg font-semibold">{col.label}</h3>
-            <ul className="space-y-3 text-[15px]">
+            <h3 className="mb-4 text-[17px] font-semibold lg:mb-5 lg:text-lg">{col.label}</h3>
+            <ul className="space-y-2.5 text-[14.5px] lg:space-y-3 lg:text-[15px]">
               {col.list.map((c) => (
                 <li key={c.slug}>
                   <Link className={linkClass} href={href(`/courses/${c.slug}`)}>
@@ -57,8 +57,8 @@ export default function Footer({ lang, dict }: { lang: Locale; dict: Dict }) {
           </div>
         ))}
 
-        <div>
-          <h3 className="mb-5 text-lg font-semibold">{dict.footer.contact}</h3>
+        <div className="col-span-2 lg:col-span-1">
+          <h3 className="mb-4 text-[17px] font-semibold lg:mb-5 lg:text-lg">{dict.footer.contact}</h3>
           <ul className="space-y-4 text-[15px] text-white/70">
             <li className="flex gap-3"><Icon name="pin" size={18} className="mt-0.5 shrink-0 text-gold" />{dict.top.address}</li>
             <li className="flex gap-3"><Icon name="phone" size={18} className="mt-0.5 shrink-0 text-gold" /><a className="hover:text-gold" href={site.phoneHref}>{site.phone}</a></li>

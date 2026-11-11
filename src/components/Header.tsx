@@ -48,10 +48,10 @@ export default function Header({ lang, nav, titles }: Props) {
     <header
       className={`sticky top-0 z-50 bg-white transition-shadow duration-300 ${scrolled ? "shadow-soft" : ""}`}
     >
-      <div className="container-x flex h-[76px] items-center justify-between gap-6 lg:h-[88px]">
+      <div className="container-x flex h-[64px] items-center justify-between gap-6 lg:h-[88px]">
         <Link href={href()} className="flex shrink-0 items-center" aria-label={site.name} onClick={() => setOpen(false)}>
           {/* eslint-disable-next-line @next/next/no-img-element */}
-          <img src={media.logo} alt={site.name} className="h-10 w-auto lg:h-12" />
+          <img src={media.logo} alt={site.name} className="h-9 w-auto lg:h-12" />
         </Link>
 
         <nav className="hidden items-center gap-8 lg:flex" aria-label={nav.menu}>
@@ -115,7 +115,7 @@ export default function Header({ lang, nav, titles }: Props) {
             ))}
           </div>
 
-          <Link href={href("/enroll")} className="btn btn-brand !hidden !min-h-[46px] !px-6 sm:!inline-flex">
+          <Link href={href("/enroll")} className="btn btn-brand !hidden !min-h-[46px] !px-6 lg:!inline-flex">
             {nav.enroll}
             <Icon name="arrow" size={17} />
           </Link>
@@ -135,7 +135,7 @@ export default function Header({ lang, nav, titles }: Props) {
       {/* Meniul mobil */}
       <div
         data-lenis-prevent
-        className={`fixed inset-x-0 bottom-0 top-[76px] z-40 overflow-y-auto bg-white transition-all duration-300 lg:hidden ${
+        className={`fixed inset-x-0 bottom-0 top-[64px] z-40 overflow-y-auto bg-white transition-all duration-300 lg:hidden ${
           open ? "visible opacity-100" : "invisible opacity-0"
         }`}
       >

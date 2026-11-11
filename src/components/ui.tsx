@@ -29,12 +29,12 @@ export function SectionHeading({
         {tag}
         {center && <span className="h-px w-8 bg-current" />}
       </p>
-      <Tag className="text-[32px] font-bold leading-[1.15] tracking-tight sm:text-[42px]">
+      <Tag className="text-[28px] font-bold leading-[1.18] tracking-tight sm:text-[42px]">
         {a}
         <span className="hl">{hl}</span>
         {b}
       </Tag>
-      {text && <p className="mt-5 text-[17px] leading-relaxed text-muted [.on-dark_&]:text-white/70">{text}</p>}
+      {text && <p className="mt-4 text-[16px] leading-relaxed sm:mt-5 sm:text-[17px] text-muted [.on-dark_&]:text-white/70">{text}</p>}
     </div>
   );
 }
@@ -49,15 +49,15 @@ export function CourseCard({ course, lang, dict, delay }: { course: Course; lang
       data-delay={delay}
       className="group flex flex-col overflow-hidden rounded-[28px] border border-line bg-white shadow-soft transition-all duration-500 hover:-translate-y-2 hover:shadow-card"
     >
-      <div className="relative m-3 flex h-44 items-end overflow-hidden rounded-[20px] bg-ink p-5">
+      <div className="relative m-3 flex h-32 items-end overflow-hidden rounded-[20px] bg-ink p-5 sm:h-44">
         <div aria-hidden className="absolute -right-10 -top-16 h-52 w-52 rounded-full bg-brand transition-transform duration-700 group-hover:scale-125" />
         <div aria-hidden className="absolute -bottom-14 right-16 h-28 w-28 rounded-full border-[14px] border-gold/80 transition-transform duration-700 group-hover:-translate-y-3" />
-        <span className="outline-light relative text-[64px] tracking-tight">{course.badge}</span>
+        <span className="outline-light relative text-[46px] tracking-tight sm:text-[64px]">{course.badge}</span>
         <span className="absolute left-5 top-5 rounded-full bg-white px-3.5 py-1.5 text-xs font-semibold text-ink">
           {course.group === "general" ? dict.nav.general : dict.nav.specialized}
         </span>
       </div>
-      <div className="flex flex-1 flex-col px-7 pb-7 pt-4">
+      <div className="flex flex-1 flex-col px-5 pb-5 pt-3 sm:px-7 sm:pb-7 sm:pt-4">
         <div className="mb-3 flex flex-wrap items-center gap-x-5 gap-y-1 text-sm text-muted">
           <span className="inline-flex items-center gap-1.5">
             <Icon name="book" size={16} className="text-brand" />
@@ -98,9 +98,9 @@ export function PageHero({
   return (
     <section className="on-dark relative isolate overflow-hidden bg-ink text-white">
       {image ? (
-        <div aria-hidden className="absolute inset-y-0 right-0 -z-10 w-full overflow-hidden lg:w-[56%]">
+        <div aria-hidden className="relative h-[190px] w-full overflow-hidden sm:h-[280px] lg:absolute lg:inset-y-0 lg:right-0 lg:-z-10 lg:h-auto lg:w-[56%]">
           <div className="kenburns h-full w-full bg-cover" style={{ backgroundImage: `url(${image})`, backgroundPosition: position }} />
-          <div className="absolute inset-0 bg-ink/75 lg:hidden" />
+          <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(21,22,27,0)_45%,#15161b_100%)] lg:hidden" />
           <div className="absolute inset-0 hidden bg-[linear-gradient(90deg,#15161b_0%,rgba(21,22,27,0.45)_22%,rgba(21,22,27,0)_50%)] lg:block" />
         </div>
       ) : (
@@ -109,16 +109,16 @@ export function PageHero({
           <div aria-hidden className="float absolute -right-16 top-10 -z-10 h-64 w-64 rounded-full border-[26px] border-gold/20" />
         </>
       )}
-      <div className={`container-x ${image ? "flex flex-col justify-center py-24 md:py-32 lg:min-h-[500px] lg:py-28" : "py-16 md:py-24"}`}>
-        <nav className="mb-5 flex items-center gap-2 text-sm text-white/70">
+      <div className={`container-x ${image ? "flex flex-col justify-center pb-10 pt-4 md:pb-14 lg:min-h-[500px] lg:py-28" : "py-11 md:py-24"}`}>
+        <nav className="mb-3 flex items-center gap-2 text-[13px] text-white/70 sm:mb-5 sm:text-sm">
           <Link href={`/${lang}`} className="hover:text-gold">
             {home}
           </Link>
           <span>/</span>
           <span className="text-gold">{crumb}</span>
         </nav>
-        <h1 className={`text-[34px] font-bold leading-[1.12] tracking-tight sm:text-5xl lg:text-[52px] ${image ? "max-w-3xl lg:max-w-[540px]" : "max-w-4xl"}`}>{title}</h1>
-        {lead && <p className={`mt-5 text-lg leading-relaxed text-white/85 ${image ? "max-w-xl lg:max-w-[480px]" : "max-w-2xl"}`}>{lead}</p>}
+        <h1 className={`text-[28px] font-bold leading-[1.15] tracking-tight sm:text-5xl lg:text-[52px] ${image ? "max-w-3xl lg:max-w-[540px]" : "max-w-4xl"}`}>{title}</h1>
+        {lead && <p className={`mt-3 text-[16px] leading-relaxed text-white/85 sm:mt-5 sm:text-lg ${image ? "max-w-xl lg:max-w-[480px]" : "max-w-2xl"}`}>{lead}</p>}
       </div>
     </section>
   );
@@ -128,20 +128,43 @@ export function PageHero({
 export function CtaBand({ lang, cta }: { lang: Locale; cta: Dict["cta"] }) {
   return (
     <section className="container-x">
-      <div data-reveal="zoom" className="relative isolate overflow-hidden rounded-[36px] bg-brand px-8 py-14 text-white md:px-16 md:py-16">
+      <div data-reveal="zoom" className="relative isolate overflow-hidden rounded-[28px] bg-brand px-6 py-10 text-white md:rounded-[36px] md:px-16 md:py-16">
         <div aria-hidden className="absolute -right-20 -top-24 -z-10 h-72 w-72 rounded-full bg-white/10" />
         <div aria-hidden className="float absolute -bottom-24 right-40 -z-10 h-56 w-56 rounded-full border-[22px] border-gold/60" />
         <div className="flex flex-col items-start justify-between gap-8 md:flex-row md:items-center">
           <div>
-            <h2 className="text-3xl font-bold tracking-tight sm:text-[40px]">{cta.title}</h2>
+            <h2 className="text-[26px] font-bold tracking-tight sm:text-[40px]">{cta.title}</h2>
             <p className="mt-3 max-w-xl text-lg text-white/85">{cta.text}</p>
           </div>
-          <Link href={`/${lang}/enroll`} className="btn btn-light shrink-0">
+          <Link href={`/${lang}/enroll`} className="btn btn-light w-full shrink-0 md:w-auto">
             {cta.button}
             <Icon name="arrow" size={18} />
           </Link>
         </div>
       </div>
     </section>
+  );
+}
+
+/** Cei trei pași: rând compact pe telefon, carduri pe ecrane mari. */
+export function StepCards({ items, plain }: { items: Dict["steps"]["items"]; plain?: boolean }) {
+  return (
+    <div className="mt-9 grid gap-3.5 md:mt-14 md:grid-cols-3 md:gap-7">
+      {items.map((step, i) => (
+        <article
+          key={step.title}
+          data-reveal
+          data-delay={i + 1}
+          className={`group relative flex items-start gap-5 rounded-[22px] bg-white p-5 shadow-soft transition-all duration-500 md:block md:rounded-[28px] md:p-8 md:hover:-translate-y-2 ${plain ? "" : "border border-line md:hover:border-brand md:hover:shadow-card"}`}
+        >
+          <span className="outline-num shrink-0 text-[40px] md:text-6xl">0{i + 1}</span>
+          <div>
+            <h3 className="text-[19px] font-bold md:mt-5 md:text-2xl">{step.title}</h3>
+            <p className="mt-1.5 text-[15px] leading-relaxed text-muted md:mt-3 md:text-[16px]">{step.text}</p>
+          </div>
+          {!plain && i < items.length - 1 && <Icon name="arrow" size={26} className="absolute -right-5 top-1/2 z-10 hidden -translate-y-1/2 rounded-full bg-white text-brand md:block" />}
+        </article>
+      ))}
+    </div>
   );
 }

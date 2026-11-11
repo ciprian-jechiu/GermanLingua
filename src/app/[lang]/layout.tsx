@@ -5,6 +5,7 @@ import "../globals.css";
 import Effects from "@/components/Effects";
 import Footer from "@/components/Footer";
 import Header from "@/components/Header";
+import MobileBar from "@/components/MobileBar";
 import TopBar from "@/components/TopBar";
 import { courses } from "@/data/courses";
 import { getDictionary } from "@/i18n";
@@ -39,6 +40,7 @@ export default async function RootLayout({ children, params }: LayoutProps<"/[la
         <Header lang={lang} nav={dict.nav} titles={titles} />
         <main className="flex-1">{children}</main>
         <Footer lang={lang} dict={dict} />
+        <MobileBar lang={lang} call={dict.about.call} enroll={dict.nav.enroll} />
         <Effects />
       </body>
     </html>
