@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Icon } from "@/components/Icon";
 import { CourseCard, CtaBand, PageHero } from "@/components/ui";
 import { courses } from "@/data/courses";
+import { media } from "@/data/site";
 import { getDictionary } from "@/i18n";
 
 export async function generateMetadata({ params }: PageProps<"/[lang]/courses">): Promise<Metadata> {
@@ -18,7 +19,7 @@ export default async function CoursesPage({ params }: PageProps<"/[lang]/courses
 
   return (
     <>
-      <PageHero lang={lang} home={dict.nav.home} crumb={dict.nav.courses} title={dict.coursesPage.title} lead={dict.coursesPage.lead} />
+      <PageHero lang={lang} home={dict.nav.home} crumb={dict.nav.courses} title={dict.coursesPage.title} lead={dict.coursesPage.lead} image={media.heroCourses} position="center 35%" />
 
       <div className="container-x py-20 lg:py-24">
         <p data-reveal className="mb-14 flex items-center gap-4 rounded-[24px] bg-mist px-7 py-5 text-[17px] font-medium">

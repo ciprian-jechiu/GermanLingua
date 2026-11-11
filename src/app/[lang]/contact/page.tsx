@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import { Icon, type IconName } from "@/components/Icon";
 import LeadForm from "@/components/LeadForm";
 import { PageHero } from "@/components/ui";
-import { site } from "@/data/site";
+import { media, site } from "@/data/site";
 import { getDictionary } from "@/i18n";
 
 export async function generateMetadata({ params }: PageProps<"/[lang]/contact">): Promise<Metadata> {
@@ -22,7 +22,7 @@ export default async function ContactPage({ params }: PageProps<"/[lang]/contact
 
   return (
     <>
-      <PageHero lang={lang} home={dict.nav.home} crumb={p.title} title={p.title} lead={p.lead} />
+      <PageHero lang={lang} home={dict.nav.home} crumb={p.title} title={p.title} lead={p.lead} image={media.heroContact} position="center 28%" />
 
       <section className="container-x py-20 lg:py-24">
         <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-4">

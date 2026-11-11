@@ -77,22 +77,48 @@ export function CourseCard({ course, lang, dict, delay }: { course: Course; lang
   );
 }
 
-/** Banda întunecată de sus de pe paginile interioare. */
-export function PageHero({ lang, home, crumb, title, lead }: { lang: Locale; home: string; crumb: string; title: string; lead?: string }) {
+/** Banda mare de sus de pe paginile interioare, cu fotografie opțională. */
+export function PageHero({
+  lang,
+  home,
+  crumb,
+  title,
+  lead,
+  image,
+  position = "center",
+}: {
+  lang: Locale;
+  home: string;
+  crumb: string;
+  title: string;
+  lead?: string;
+  image?: string;
+  position?: string;
+}) {
   return (
     <section className="on-dark relative isolate overflow-hidden bg-ink text-white">
-      <div aria-hidden className="absolute -left-24 -top-24 -z-10 h-[380px] w-[380px] rounded-full bg-brand/45 blur-[130px]" />
-      <div aria-hidden className="float absolute -right-16 top-10 -z-10 h-64 w-64 rounded-full border-[26px] border-gold/20" />
-      <div className="container-x py-16 md:py-24">
-        <nav className="mb-5 flex items-center gap-2 text-sm text-white/60">
+      {image ? (
+        <div aria-hidden className="absolute inset-y-0 right-0 -z-10 w-full overflow-hidden lg:w-[56%]">
+          <div className="kenburns h-full w-full bg-cover" style={{ backgroundImage: `url(${image})`, backgroundPosition: position }} />
+          <div className="absolute inset-0 bg-ink/75 lg:hidden" />
+          <div className="absolute inset-0 hidden bg-[linear-gradient(90deg,#15161b_0%,rgba(21,22,27,0.45)_22%,rgba(21,22,27,0)_50%)] lg:block" />
+        </div>
+      ) : (
+        <>
+          <div aria-hidden className="absolute -left-24 -top-24 -z-10 h-[380px] w-[380px] rounded-full bg-brand/45 blur-[130px]" />
+          <div aria-hidden className="float absolute -right-16 top-10 -z-10 h-64 w-64 rounded-full border-[26px] border-gold/20" />
+        </>
+      )}
+      <div className={`container-x ${image ? "flex flex-col justify-center py-24 md:py-32 lg:min-h-[500px] lg:py-28" : "py-16 md:py-24"}`}>
+        <nav className="mb-5 flex items-center gap-2 text-sm text-white/70">
           <Link href={`/${lang}`} className="hover:text-gold">
             {home}
           </Link>
           <span>/</span>
           <span className="text-gold">{crumb}</span>
         </nav>
-        <h1 className="max-w-4xl text-[34px] font-bold leading-[1.12] tracking-tight sm:text-5xl lg:text-[56px]">{title}</h1>
-        {lead && <p className="mt-5 max-w-2xl text-lg leading-relaxed text-white/75">{lead}</p>}
+        <h1 className={`text-[34px] font-bold leading-[1.12] tracking-tight sm:text-5xl lg:text-[52px] ${image ? "max-w-3xl lg:max-w-[540px]" : "max-w-4xl"}`}>{title}</h1>
+        {lead && <p className={`mt-5 text-lg leading-relaxed text-white/85 ${image ? "max-w-xl lg:max-w-[480px]" : "max-w-2xl"}`}>{lead}</p>}
       </div>
     </section>
   );

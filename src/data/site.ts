@@ -18,6 +18,10 @@ export const site = {
 };
 
 export const media = {
+  heroHome: "/images/hero-home.jpg",
+  heroCourses: "/images/hero-courses.jpg",
+  heroAbout: "/images/hero-about.jpg",
+  heroContact: "/images/hero-contact.jpg",
   logo: `${WP}/2022/07/GermanLingua_logo.png`,
   logoInverted: `${WP}/2022/08/GermanLingua_logo_inverted.png`,
   hero: `${WP}/2022/07/curs-germana-chisinau-GermanLingua.jpg`,

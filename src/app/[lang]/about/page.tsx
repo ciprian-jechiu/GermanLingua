@@ -16,7 +16,7 @@ export default async function AboutPage({ params }: PageProps<"/[lang]/about">) 
 
   return (
     <>
-      <PageHero lang={lang} home={dict.nav.home} crumb={dict.nav.about} title={dict.aboutPage.title} lead={dict.aboutPage.lead} />
+      <PageHero lang={lang} home={dict.nav.home} crumb={dict.nav.about} title={dict.aboutPage.title} lead={dict.aboutPage.lead} image={media.heroAbout} position="center 55%" />
 
       {/* Metoda */}
       <section className="container-x grid items-center gap-14 py-20 lg:grid-cols-2 lg:gap-20 lg:py-28">

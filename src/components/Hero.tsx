@@ -36,29 +36,27 @@ export default function Hero({ hero, images, enrollHref, coursesHref }: Props) {
 
   return (
     <section className="on-dark relative isolate overflow-hidden bg-ink text-white">
-      {images.map((src, i) => (
-        <div
-          key={src}
-          aria-hidden
-          className={`absolute inset-0 -z-20 transition-opacity duration-[1200ms] ${i === index % images.length ? "opacity-100" : "opacity-0"}`}
-        >
+      {/* Fotografia stă în dreapta, textul în stânga, ca să rămână clară și neacoperită. */}
+      <div aria-hidden className="absolute inset-y-0 right-0 -z-20 w-full overflow-hidden lg:w-[56%]">
+        {images.map((src, i) => (
           <div
-            key={i === index % images.length ? `on-${index}` : "off"}
-            className={`h-full w-full bg-cover bg-center ${i === index % images.length ? "kenburns" : ""}`}
-            style={{ backgroundImage: `url(${src})` }}
-          />
-        </div>
-      ))}
-      <div aria-hidden className="absolute inset-0 -z-10 bg-[linear-gradient(100deg,rgba(21,22,27,0.94)_0%,rgba(21,22,27,0.82)_45%,rgba(21,22,27,0.5)_100%)]" />
-      <div aria-hidden className="absolute -left-32 top-10 -z-10 h-[420px] w-[420px] rounded-full bg-brand/40 blur-[140px]" />
+            key={src}
+            className={`absolute inset-0 transition-opacity duration-[1200ms] ${i === index % images.length ? "opacity-100" : "opacity-0"}`}
+          >
+            <div className="kenburns h-full w-full bg-cover bg-[position:30%_20%]" style={{ backgroundImage: `url(${src})` }} />
+          </div>
+        ))}
+        <div className="absolute inset-0 bg-ink/75 lg:hidden" />
+        <div className="absolute inset-0 hidden bg-[linear-gradient(90deg,#15161b_0%,rgba(21,22,27,0.45)_22%,rgba(21,22,27,0)_50%)] lg:block" />
+      </div>
 
       <div className="container-x relative pb-44 pt-20 md:pb-56 md:pt-28 lg:pt-36">
-        <div ref={textRef} className="max-w-[720px] lg:pl-10">
+        <div ref={textRef} className="max-w-[720px] lg:max-w-[560px] lg:pl-10">
           <p data-hero className="mb-5 inline-flex items-center gap-3 text-sm font-semibold uppercase tracking-[0.18em] text-gold">
             <span className="h-px w-10 bg-gold" />
             {slide.tag}
           </p>
-          <h1 data-hero className="text-[40px] font-bold leading-[1.08] tracking-tight sm:text-6xl lg:text-[68px]">
+          <h1 data-hero className="text-[40px] font-bold leading-[1.08] tracking-tight sm:text-6xl lg:text-[60px]">
             {slide.a}
             <span className="hl">{slide.hl}</span>
             {slide.b}

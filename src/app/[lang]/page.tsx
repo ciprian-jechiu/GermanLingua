@@ -17,7 +17,7 @@ export default async function HomePage({ params }: PageProps<"/[lang]">) {
 
   return (
     <>
-      <Hero hero={dict.hero} images={[media.hero, media.online]} enrollHref={href("/enroll")} coursesHref={href("/courses")} />
+      <Hero hero={dict.hero} images={[media.heroHome]} enrollHref={href("/enroll")} coursesHref={href("/courses")} />
 
       {/* Cele 4 carduri suprapuse peste hero */}
       <section className="container-x relative z-10 -mt-28 md:-mt-36">
