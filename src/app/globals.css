@@ -2,14 +2,16 @@
 
 /* Paleta GermanLingua: alb + negru-cărbune, roșu și accente aurii. */
 @theme {
-  --color-ink: #15161b;
-  --color-ink-soft: #24262f;
+  --color-ink: #2d2018;
+  --color-ink-soft: #4a382c;
+  --color-sun: #ffd25a;
+  --color-sun-soft: #fff5da;
   --color-brand: #c4122f;
   --color-brand-dark: #9c0c23;
   --color-gold: #f2b632;
   --color-mist: #f7f5f2;
   --color-line: #eae6e0;
-  --color-muted: #5f6272;
+  --color-muted: #6b5d52;
 
   --font-sans: "Onest Variable", ui-sans-serif, system-ui, -apple-system, "Segoe UI", sans-serif;
   --font-serif: "Playfair Display Variable", Georgia, "Times New Roman", serif;
@@ -126,11 +128,12 @@ body {
   background: var(--color-brand-dark);
 }
 .btn-ink {
-  background: var(--color-ink);
-  color: #fff;
+  background: var(--color-sun);
+  color: var(--color-ink);
 }
 .btn-ink:hover {
   background: var(--color-brand);
+  color: #fff;
 }
 .btn-light {
   background: #fff;

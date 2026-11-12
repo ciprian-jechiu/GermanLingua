@@ -35,7 +35,7 @@ export default function Hero({ hero, images, enrollHref, coursesHref }: Props) {
   }, [index]);
 
   return (
-    <section className="on-dark relative isolate overflow-hidden bg-ink text-white">
+    <section className="relative isolate overflow-hidden bg-sun text-ink">
       {/* Fotografia stă în dreapta, textul în stânga, ca să rămână clară și neacoperită. */}
       <div aria-hidden className="relative h-[250px] w-full overflow-hidden sm:h-[340px] lg:absolute lg:inset-y-0 lg:right-0 lg:-z-20 lg:h-auto lg:w-[56%]">
         {images.map((src, i) => (
@@ -46,14 +46,14 @@ export default function Hero({ hero, images, enrollHref, coursesHref }: Props) {
             <div className="kenburns h-full w-full bg-cover bg-[position:30%_20%]" style={{ backgroundImage: `url(${src})` }} />
           </div>
         ))}
-        <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(21,22,27,0)_50%,#15161b_100%)] lg:hidden" />
-        <div className="absolute inset-0 hidden bg-[linear-gradient(90deg,#15161b_0%,rgba(21,22,27,0.45)_22%,rgba(21,22,27,0)_50%)] lg:block" />
+        <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(255,210,90,0)_55%,#ffd25a_100%)] lg:hidden" />
+        <div className="absolute inset-0 hidden bg-[linear-gradient(90deg,#ffd25a_0%,rgba(255,210,90,0.55)_20%,rgba(255,210,90,0)_46%)] lg:block" />
       </div>
 
       <div className="container-x relative pb-36 pt-5 md:pb-56 md:pt-10 lg:pt-36">
         <div ref={textRef} className="max-w-[720px] lg:max-w-[560px] lg:pl-10">
-          <p data-hero className="mb-3 inline-flex items-center gap-3 text-[12px] font-semibold uppercase tracking-[0.16em] text-gold sm:mb-5 sm:text-sm">
-            <span className="h-px w-10 bg-gold" />
+          <p data-hero className="mb-3 inline-flex items-center gap-3 text-[12px] font-semibold uppercase tracking-[0.16em] text-brand sm:mb-5 sm:text-sm">
+            <span className="h-px w-10 bg-brand" />
             {slide.tag}
           </p>
           <h1 data-hero className="text-[33px] font-bold leading-[1.1] tracking-tight sm:text-6xl lg:text-[60px]">
@@ -61,7 +61,7 @@ export default function Hero({ hero, images, enrollHref, coursesHref }: Props) {
             <span className="hl">{slide.hl}</span>
             {slide.b}
           </h1>
-          <p data-hero className="mt-4 max-w-[560px] text-[16px] leading-relaxed text-white/80 sm:mt-6 sm:text-lg">
+          <p data-hero className="mt-4 max-w-[560px] text-[16px] leading-relaxed text-ink/80 sm:mt-6 sm:text-lg">
             {slide.text}
           </p>
           <div data-hero className="mt-7 grid gap-3 sm:mt-9 sm:flex sm:flex-wrap sm:gap-4">
@@ -78,7 +78,7 @@ export default function Hero({ hero, images, enrollHref, coursesHref }: Props) {
 
         <div className="mt-6 flex gap-2 lg:hidden" aria-hidden>
           {hero.slides.map((s, i) => (
-            <span key={s.tag} className={`h-1.5 rounded-full transition-all duration-500 ${i === index ? "w-8 bg-gold" : "w-3 bg-white/30"}`} />
+            <span key={s.tag} className={`h-1.5 rounded-full transition-all duration-500 ${i === index ? "w-8 bg-brand" : "w-3 bg-ink/25"}`} />
           ))}
         </div>
       </div>
@@ -97,7 +97,7 @@ function SliderButton({ label, icon, onClick }: { label: string; icon: "arrow" |
       type="button"
       aria-label={label}
       onClick={onClick}
-      className="pointer-events-auto grid h-12 w-12 place-items-center rounded-full border border-white/30 bg-white/10 text-white backdrop-blur transition-colors hover:border-brand hover:bg-brand"
+      className="pointer-events-auto grid h-12 w-12 place-items-center rounded-full border border-ink/15 bg-white/85 text-ink backdrop-blur transition-colors hover:border-brand hover:bg-brand hover:text-white"
     >
       <Icon name={icon} size={19} />
     </button>

@@ -21,7 +21,12 @@ const oldUrls: Record<string, string> = {
 
 const nextConfig: NextConfig = {
   async redirects() {
-    return Object.entries(oldUrls).map(([source, destination]) => ({ source, destination, permanent: true }));
+    return [
+      // Limbile scoase (germană, engleză) duc la varianta în română.
+      { source: "/:lang(de|en)", destination: "/ro", permanent: false },
+      { source: "/:lang(de|en)/:path*", destination: "/ro/:path*", permanent: false },
+      ...Object.entries(oldUrls).map(([source, destination]) => ({ source, destination, permanent: true })),
+    ];
   },
   turbopack: {
     rules: {

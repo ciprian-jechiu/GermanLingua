@@ -29,14 +29,14 @@ export default async function EnrollPage({ params }: PageProps<"/[lang]/enroll">
               </li>
             ))}
           </ul>
-          <a data-reveal href={site.phoneHref} className="group mt-6 hidden items-center gap-5 rounded-[28px] bg-ink p-7 text-white lg:flex">
+          <a data-reveal href={site.phoneHref} className="group mt-6 hidden items-center gap-5 rounded-[28px] bg-sun p-7 text-ink lg:flex">
             <span className="grid h-14 w-14 place-items-center rounded-full bg-brand transition-transform group-hover:scale-110">
               <Icon name="phone" size={24} />
             </span>
             <span>
-              <span className="block text-sm text-white/65">{dict.about.call}</span>
+              <span className="block text-sm text-ink/70">{dict.about.call}</span>
               <span className="block text-2xl font-bold">{site.phone}</span>
-              <span className="block text-sm text-white/65">{dict.top.hours}</span>
+              <span className="block text-sm text-ink/70">{dict.top.hours}</span>
             </span>
           </a>
         </div>

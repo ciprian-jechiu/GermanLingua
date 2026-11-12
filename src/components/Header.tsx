@@ -31,7 +31,7 @@ export default function Header({ lang, nav, titles }: Props) {
   }, [open]);
 
   const href = (path = "") => `/${lang}${path}`;
-  const switchTo = (l: Locale) => pathname.replace(/^\/(de|ro|en|ru)(?=\/|$)/, `/${l}`) || `/${l}`;
+  const switchTo = (l: Locale) => pathname.replace(/^\/(ro|ru)(?=\/|$)/, `/${l}`) || `/${l}`;
   const isActive = (path: string) => (path === "" ? pathname === `/${lang}` : pathname.startsWith(`/${lang}${path}`));
 
   const general = courses.filter((c) => c.group === "general");
@@ -48,10 +48,10 @@ export default function Header({ lang, nav, titles }: Props) {
     <header
       className={`sticky top-0 z-50 bg-white transition-shadow duration-300 ${scrolled ? "shadow-soft" : ""}`}
     >
-      <div className="container-x flex h-[64px] items-center justify-between gap-6 lg:h-[88px]">
+      <div className="container-x flex h-[76px] items-center justify-between gap-6 lg:h-[104px]">
         <Link href={href()} className="flex shrink-0 items-center" aria-label={site.name} onClick={() => setOpen(false)}>
           {/* eslint-disable-next-line @next/next/no-img-element */}
-          <img src={media.logo} alt={site.name} className="h-9 w-auto lg:h-12" />
+          <img src={media.logo} alt={site.name} className="h-[52px] w-auto lg:h-[72px]" />
         </Link>
 
         <nav className="hidden items-center gap-8 lg:flex" aria-label={nav.menu}>
@@ -107,7 +107,7 @@ export default function Header({ lang, nav, titles }: Props) {
                 hrefLang={l}
                 title={localeNames[l]}
                 className={`rounded-full px-2.5 py-1.5 text-xs font-semibold uppercase tracking-wide transition-colors ${
-                  l === lang ? "bg-ink text-white" : "text-muted hover:text-brand"
+                  l === lang ? "bg-brand text-white" : "text-muted hover:text-brand"
                 }`}
               >
                 {l}
@@ -135,7 +135,7 @@ export default function Header({ lang, nav, titles }: Props) {
       {/* Meniul mobil */}
       <div
         data-lenis-prevent
-        className={`fixed inset-x-0 bottom-0 top-[64px] z-40 overflow-y-auto bg-white transition-all duration-300 lg:hidden ${
+        className={`fixed inset-x-0 bottom-0 top-[76px] z-40 overflow-y-auto bg-white transition-all duration-300 lg:hidden ${
           open ? "visible opacity-100" : "invisible opacity-0"
         }`}
       >
@@ -147,7 +147,7 @@ export default function Header({ lang, nav, titles }: Props) {
                 href={switchTo(l)}
                 onClick={() => setOpen(false)}
                 className={`flex min-h-11 flex-1 items-center justify-center rounded-full border text-sm font-semibold uppercase ${
-                  l === lang ? "border-ink bg-ink text-white" : "border-line text-muted"
+                  l === lang ? "border-brand bg-brand text-white" : "border-line text-muted"
                 }`}
               >
                 {l}

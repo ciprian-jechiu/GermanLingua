@@ -49,10 +49,10 @@ export function CourseCard({ course, lang, dict, delay }: { course: Course; lang
       data-delay={delay}
       className="group flex flex-col overflow-hidden rounded-[28px] border border-line bg-white shadow-soft transition-all duration-500 hover:-translate-y-2 hover:shadow-card"
     >
-      <div className="relative m-3 flex h-32 items-end overflow-hidden rounded-[20px] bg-ink p-5 sm:h-44">
+      <div className="relative m-3 flex h-32 items-end overflow-hidden rounded-[20px] bg-sun p-5 sm:h-44">
         <div aria-hidden className="absolute -right-10 -top-16 h-52 w-52 rounded-full bg-brand transition-transform duration-700 group-hover:scale-125" />
-        <div aria-hidden className="absolute -bottom-14 right-16 h-28 w-28 rounded-full border-[14px] border-gold/80 transition-transform duration-700 group-hover:-translate-y-3" />
-        <span className="outline-light relative text-[46px] tracking-tight sm:text-[64px]">{course.badge}</span>
+        <div aria-hidden className="absolute -bottom-14 right-16 h-28 w-28 rounded-full border-[14px] border-white/90 transition-transform duration-700 group-hover:-translate-y-3" />
+        <span className="relative font-extrabold text-ink text-[46px] tracking-tight sm:text-[64px]">{course.badge}</span>
         <span className="absolute left-5 top-5 rounded-full bg-white px-3.5 py-1.5 text-xs font-semibold text-ink">
           {course.group === "general" ? dict.nav.general : dict.nav.specialized}
         </span>
@@ -96,29 +96,29 @@ export function PageHero({
   position?: string;
 }) {
   return (
-    <section className="on-dark relative isolate overflow-hidden bg-ink text-white">
+    <section className="relative isolate overflow-hidden bg-sun text-ink">
       {image ? (
         <div aria-hidden className="relative h-[190px] w-full overflow-hidden sm:h-[280px] lg:absolute lg:inset-y-0 lg:right-0 lg:-z-10 lg:h-auto lg:w-[56%]">
           <div className="kenburns h-full w-full bg-cover" style={{ backgroundImage: `url(${image})`, backgroundPosition: position }} />
-          <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(21,22,27,0)_45%,#15161b_100%)] lg:hidden" />
-          <div className="absolute inset-0 hidden bg-[linear-gradient(90deg,#15161b_0%,rgba(21,22,27,0.45)_22%,rgba(21,22,27,0)_50%)] lg:block" />
+          <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(255,210,90,0)_50%,#ffd25a_100%)] lg:hidden" />
+          <div className="absolute inset-0 hidden bg-[linear-gradient(90deg,#ffd25a_0%,rgba(255,210,90,0.55)_20%,rgba(255,210,90,0)_46%)] lg:block" />
         </div>
       ) : (
         <>
-          <div aria-hidden className="absolute -left-24 -top-24 -z-10 h-[380px] w-[380px] rounded-full bg-brand/45 blur-[130px]" />
-          <div aria-hidden className="float absolute hidden sm:block -right-16 top-10 -z-10 h-64 w-64 rounded-full border-[26px] border-gold/20" />
+          <div aria-hidden className="absolute -left-24 -top-24 -z-10 h-[380px] w-[380px] rounded-full bg-white/70 blur-[110px]" />
+          <div aria-hidden className="float absolute hidden sm:block -right-16 top-10 -z-10 h-64 w-64 rounded-full border-[26px] border-white/55" />
         </>
       )}
       <div className={`container-x ${image ? "flex flex-col justify-center pb-10 pt-4 md:pb-14 lg:min-h-[500px] lg:py-28" : "py-11 md:py-24"}`}>
-        <nav className="mb-3 flex items-center gap-2 text-[13px] text-white/70 sm:mb-5 sm:text-sm">
-          <Link href={`/${lang}`} className="hover:text-gold">
+        <nav className="mb-3 flex items-center gap-2 text-[13px] text-ink/70 sm:mb-5 sm:text-sm">
+          <Link href={`/${lang}`} className="hover:text-brand">
             {home}
           </Link>
           <span>/</span>
-          <span className="text-gold">{crumb}</span>
+          <span className="font-semibold text-brand">{crumb}</span>
         </nav>
         <h1 className={`text-[28px] font-bold leading-[1.15] tracking-tight sm:text-5xl lg:text-[52px] ${image ? "max-w-3xl lg:max-w-[540px]" : "max-w-4xl"}`}>{title}</h1>
-        {lead && <p className={`mt-3 text-[16px] leading-relaxed text-white/85 sm:mt-5 sm:text-lg ${image ? "max-w-xl lg:max-w-[480px]" : "max-w-2xl"}`}>{lead}</p>}
+        {lead && <p className={`mt-3 text-[16px] leading-relaxed text-ink/80 sm:mt-5 sm:text-lg ${image ? "max-w-xl lg:max-w-[480px]" : "max-w-2xl"}`}>{lead}</p>}
       </div>
     </section>
   );

@@ -81,12 +81,12 @@ export default async function CoursePage({ params }: PageProps<"/[lang]/courses/
         </div>
 
         <aside className="space-y-5 sm:space-y-7 lg:sticky lg:top-28 lg:self-start">
-          <div data-reveal="right" className="on-dark overflow-hidden rounded-[28px] bg-ink text-white shadow-card">
-            <h2 className="bg-brand px-6 py-4 text-lg font-bold sm:px-7 sm:py-5 sm:text-xl">{dict.coursePage.facts}</h2>
-            <dl className="divide-y divide-white/10 px-6 sm:px-7">
+          <div data-reveal="right" className="overflow-hidden rounded-[28px] border border-line bg-white text-ink shadow-card">
+            <h2 className="bg-brand px-6 py-4 text-lg font-bold text-white sm:px-7 sm:py-5 sm:text-xl">{dict.coursePage.facts}</h2>
+            <dl className="divide-y divide-line px-6 sm:px-7">
               {facts.map((fact) => (
                 <div key={fact.label} className="py-3.5 sm:flex sm:items-baseline sm:justify-between sm:gap-5 sm:py-4">
-                  <dt className="text-[13px] text-white/60 sm:text-sm">{fact.label}</dt>
+                  <dt className="text-[13px] text-muted sm:text-sm">{fact.label}</dt>
                   <dd className="mt-0.5 text-[15px] font-semibold sm:mt-0 sm:text-right">{fact.value}</dd>
                 </div>
               ))}

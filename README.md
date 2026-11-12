@@ -1,6 +1,6 @@
 # GermanLingua
 
-Site-ul școlii de limba germană GermanLingua (Chișinău), în 4 limbi: germană, română, engleză și rusă.
+Site-ul școlii de limba germană GermanLingua (Chișinău), în 2 limbi: română (limba de bază) și rusă.
 
 Construit cu Next.js, TypeScript și Tailwind CSS, cu animații GSAP și derulare lină Lenis.
 
@@ -17,7 +17,7 @@ Apoi deschide http://localhost:3000.
 
 | Ce vrei să schimbi | Fișier |
 | --- | --- |
-| Textele, pe limbi | `src/i18n/dictionaries/ro.ts`, `de.ts`, `en.ts`, `ru.ts` |
+| Textele, pe limbi | `src/i18n/dictionaries/ro.ts`, `ru.ts` |
 | Telefon, e-mail, rețele sociale, imagini | `src/data/site.ts` |
 | Lista cursurilor și prețurile | `src/data/courses.ts` |
 | Culorile și fonturile | `src/app/globals.css` (blocul `@theme`) |

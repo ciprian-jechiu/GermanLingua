@@ -105,19 +105,19 @@ export default async function HomePage({ params }: PageProps<"/[lang]">) {
       </section>
 
       {/* Cifre */}
-      <section className="on-dark relative isolate overflow-hidden bg-ink text-white">
+      <section className="on-dark relative isolate overflow-hidden bg-brand-dark text-white">
         <div aria-hidden className="absolute inset-0 -z-20 bg-cover bg-center opacity-20" style={{ backgroundImage: `url(${media.hero})` }} />
-        <div aria-hidden className="absolute inset-0 -z-10 bg-[linear-gradient(90deg,rgba(21,22,27,0.96),rgba(156,12,35,0.72))]" />
+        <div aria-hidden className="absolute inset-0 -z-10 bg-[linear-gradient(90deg,rgba(156,12,35,0.97),rgba(196,18,47,0.86))]" />
         <div className="container-x grid grid-cols-2 gap-x-3 gap-y-9 py-14 lg:grid-cols-4 lg:py-20">
           {dict.stats.map((s, i) => (
             <div key={s.label} data-reveal data-delay={i + 1} className="text-center">
-              <span className="blob mx-auto grid h-16 w-16 place-items-center bg-gold text-ink sm:h-20 sm:w-20">
+              <span className="blob mx-auto grid h-16 w-16 place-items-center bg-sun text-ink sm:h-20 sm:w-20">
                 <Icon name={statIcons[i]} size={34} />
               </span>
               <p className="mt-4 text-[40px] font-extrabold leading-none tracking-tight sm:mt-5 sm:text-6xl">
                 <span data-count={s.value}>{s.value}</span>
                 {s.suffix}
-                {i < 2 && <span className="text-gold">+</span>}
+                {i < 2 && <span className="text-sun">+</span>}
               </p>
               <p className="mx-auto mt-2 max-w-[180px] text-[14px] leading-snug text-white/75 sm:text-[15px]">{s.label}</p>
             </div>
@@ -142,8 +142,8 @@ export default async function HomePage({ params }: PageProps<"/[lang]">) {
       </section>
 
       {/* Metoda */}
-      <section className="on-dark relative isolate overflow-hidden bg-ink text-white">
-        <div aria-hidden className="absolute -right-32 top-0 -z-10 h-[460px] w-[460px] rounded-full bg-brand/35 blur-[140px]" />
+      <section className="relative isolate overflow-hidden bg-sun-soft text-ink">
+        <div aria-hidden className="absolute -right-32 top-0 -z-10 h-[460px] w-[460px] rounded-full bg-sun/70 blur-[140px]" />
         <div className="container-x grid items-center gap-10 py-16 lg:grid-cols-2 lg:gap-20 lg:py-28">
           <div>
             <SectionHeading tag={dict.method.tag} a={dict.method.a} hl={dict.method.hl} b={dict.method.b} text={dict.method.text} />
@@ -152,9 +152,9 @@ export default async function HomePage({ params }: PageProps<"/[lang]">) {
                 <div key={bar.label} data-reveal>
                   <div className="mb-2.5 flex justify-between text-[15px] font-semibold">
                     <span>{bar.label}</span>
-                    <span className="text-gold">{bar.value}%</span>
+                    <span className="text-brand">{bar.value}%</span>
                   </div>
-                  <div className="h-2 overflow-hidden rounded-full bg-white/10">
+                  <div className="h-2 overflow-hidden rounded-full bg-ink/10">
                     <div className="bar-fill h-full rounded-full bg-[linear-gradient(90deg,var(--color-brand),var(--color-gold))]" style={{ "--w": `${bar.value}%` } as React.CSSProperties} />
                   </div>
                 </div>
@@ -167,13 +167,13 @@ export default async function HomePage({ params }: PageProps<"/[lang]">) {
                 key={step}
                 data-reveal="zoom"
                 data-delay={i + 1}
-                className={`group rounded-[22px] border border-white/10 bg-white/[0.04] p-5 backdrop-blur sm:rounded-[28px] sm:p-7 transition-colors duration-500 hover:border-brand hover:bg-brand ${i % 2 === 1 ? "lg:translate-y-8" : ""}`}
+                className={`group rounded-[22px] border border-line bg-white p-5 shadow-soft sm:rounded-[28px] sm:p-7 transition-all duration-500 hover:-translate-y-1 hover:border-brand ${i % 2 === 1 ? "lg:translate-y-8" : ""}`}
               >
                 <div className="flex items-center justify-between">
-                  <span className="grid h-11 w-11 place-items-center rounded-full bg-white/10 text-gold transition-colors group-hover:bg-white group-hover:text-brand sm:h-14 sm:w-14">
+                  <span className="grid h-11 w-11 place-items-center rounded-full bg-sun text-ink transition-colors group-hover:bg-brand group-hover:text-white sm:h-14 sm:w-14">
                     <Icon name={stepIcons[i]} size={26} />
                   </span>
-                  <span className="outline-light text-[28px] sm:text-4xl">0{i + 1}</span>
+                  <span className="outline-num text-[28px] sm:text-4xl">0{i + 1}</span>
                 </div>
                 <p className="mt-5 hyphens-auto break-words text-[19px] font-bold sm:mt-6 sm:text-2xl">{step}</p>
               </div>
@@ -190,9 +190,9 @@ export default async function HomePage({ params }: PageProps<"/[lang]">) {
             {/* eslint-disable-next-line @next/next/no-img-element */}
             <img src={media.founder} alt={dict.founder.name} loading="lazy" className="aspect-[4/5] w-full object-cover object-top" />
           </div>
-          <div className="absolute -bottom-6 left-6 right-6 rounded-[22px] bg-ink px-6 py-4 text-white shadow-card">
+          <div className="absolute -bottom-6 left-6 right-6 rounded-[22px] bg-brand px-6 py-4 text-white shadow-card">
             <p className="text-lg font-bold">{dict.founder.name}</p>
-            <p className="text-sm text-gold">{dict.founder.tag}</p>
+            <p className="text-sm text-white/85">{dict.founder.tag}</p>
           </div>
         </div>
         <div>
@@ -224,11 +224,11 @@ export default async function HomePage({ params }: PageProps<"/[lang]">) {
                 href={href(`/courses/${item.slug}`)}
                 data-reveal
                 data-delay={i + 1}
-                className="group relative isolate flex min-h-[250px] items-end overflow-hidden rounded-[24px] bg-ink p-6 text-white md:min-h-[380px] md:rounded-[32px] md:p-8"
+                className="group relative isolate flex min-h-[250px] items-end overflow-hidden rounded-[24px] bg-brand-dark p-6 text-white md:min-h-[380px] md:rounded-[32px] md:p-8"
               >
                 {/* eslint-disable-next-line @next/next/no-img-element */}
                 <img src={item.img} alt="" loading="lazy" className="absolute inset-0 -z-20 h-full w-full object-cover transition-transform duration-[1200ms] group-hover:scale-110" />
-                <div aria-hidden className="absolute inset-0 -z-10 bg-[linear-gradient(180deg,rgba(21,22,27,0.1)_20%,rgba(21,22,27,0.92)_85%)]" />
+                <div aria-hidden className="absolute inset-0 -z-10 bg-[linear-gradient(180deg,rgba(120,12,30,0)_25%,rgba(120,12,30,0.93)_88%)]" />
                 <div>
                   <span className="mb-3 grid h-12 w-12 place-items-center rounded-full bg-brand md:mb-4 md:h-14 md:w-14">
                     <Icon name={item.icon} size={26} />
@@ -256,14 +256,14 @@ export default async function HomePage({ params }: PageProps<"/[lang]">) {
       {/* Formular */}
       <section className="container-x py-16 lg:py-32">
         <div className="grid overflow-hidden rounded-[28px] md:rounded-[36px] border border-line shadow-card lg:grid-cols-[0.9fr_1.1fr]">
-          <div data-reveal="left" className="on-dark relative isolate overflow-hidden bg-ink p-7 text-white md:p-14">
-            <div aria-hidden className="absolute -bottom-24 -left-20 -z-10 h-72 w-72 rounded-full bg-brand/50 blur-[90px]" />
+          <div data-reveal="left" className="relative isolate overflow-hidden bg-sun p-7 text-ink md:p-14">
+            <div aria-hidden className="absolute -bottom-24 -left-20 -z-10 h-72 w-72 rounded-full bg-white/60 blur-[90px]" />
             <h2 className="text-[26px] font-bold leading-tight tracking-tight sm:text-4xl">{dict.form.title}</h2>
-            <p className="mt-3 text-[16px] text-white/75 sm:mt-4 sm:text-lg">{dict.form.subtitle}</p>
+            <p className="mt-3 text-[16px] text-ink/75 sm:mt-4 sm:text-lg">{dict.form.subtitle}</p>
             <ul className="mt-6 space-y-3 sm:mt-9 sm:space-y-4">
               {dict.form.bullets.map((b) => (
-                <li key={b} className="flex gap-3.5 text-[16px] text-white/90">
-                  <span className="mt-0.5 grid h-6 w-6 shrink-0 place-items-center rounded-full bg-gold text-ink">
+                <li key={b} className="flex gap-3.5 text-[16px] text-ink/90">
+                  <span className="mt-0.5 grid h-6 w-6 shrink-0 place-items-center rounded-full bg-brand text-white">
                     <Icon name="check" size={15} />
                   </span>
                   {b}
@@ -296,8 +296,8 @@ export default async function HomePage({ params }: PageProps<"/[lang]">) {
       </section>
 
       {/* Povești */}
-      <section className="on-dark relative isolate overflow-hidden bg-ink text-white">
-        <div aria-hidden className="absolute left-1/2 top-0 -z-10 h-[380px] w-[720px] -translate-x-1/2 rounded-full bg-brand/30 blur-[150px]" />
+      <section className="relative isolate overflow-hidden bg-sun text-ink">
+        <div aria-hidden className="absolute left-1/2 top-0 -z-10 h-[380px] w-[720px] -translate-x-1/2 rounded-full bg-white/45 blur-[150px]" />
         <div className="container-x py-16 lg:py-28">
           <SectionHeading center tag={dict.stories.tag} a={dict.stories.a} hl={dict.stories.hl} b={dict.stories.b} />
           <div className="snap-row mt-9 sm:mt-14 sm:flex sm:flex-wrap sm:justify-center sm:gap-6">
@@ -306,13 +306,13 @@ export default async function HomePage({ params }: PageProps<"/[lang]">) {
                 key={story.name}
                 data-reveal
                 data-delay={(i % 3) + 1}
-                className="w-full rounded-[24px] border border-white/10 bg-white/[0.04] p-6 backdrop-blur sm:rounded-[28px] sm:p-7 transition-colors duration-500 hover:border-gold/60 md:w-[calc(50%-12px)] lg:w-[calc(33.333%-16px)]"
+                className="w-full rounded-[24px] border border-transparent bg-white p-6 shadow-soft sm:rounded-[28px] sm:p-7 transition-colors duration-500 hover:border-brand md:w-[calc(50%-12px)] lg:w-[calc(33.333%-16px)]"
               >
-                <Icon name="spark" size={26} className="text-gold" />
-                <p className="mt-4 min-h-[96px] text-[16px] leading-relaxed text-white/90 sm:mt-5 sm:min-h-[84px] sm:text-[17px]">{story.text}</p>
-                <figcaption className="mt-6 flex items-center gap-4 border-t border-white/10 pt-5">
+                <Icon name="spark" size={26} className="text-brand" />
+                <p className="mt-4 min-h-[96px] text-[16px] leading-relaxed text-ink/90 sm:mt-5 sm:min-h-[84px] sm:text-[17px]">{story.text}</p>
+                <figcaption className="mt-6 flex items-center gap-4 border-t border-line pt-5">
                   {/* eslint-disable-next-line @next/next/no-img-element */}
-                  <img src={media.stories[i]} alt="" loading="lazy" className="h-14 w-14 rounded-full bg-white/10 object-cover" />
+                  <img src={media.stories[i]} alt="" loading="lazy" className="h-14 w-14 rounded-full bg-mist object-cover" />
                   <span className="text-lg font-bold">{story.name}</span>
                 </figcaption>
               </figure>
