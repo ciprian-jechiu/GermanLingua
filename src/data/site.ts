@@ -28,7 +28,7 @@ export const media = {
   group: `${WP}/2022/07/curs-limba-germana-in-grup-prezenta-fizica-GermanLingua.jpg`,
   online: `${WP}/2022/07/germana-in-chisinau-si-online-GermanLingua.jpg`,
   a2: `${WP}/2022/07/curs-limba-germana-a2-GermanLingua.jpg`,
-  founder: `${WP}/2022/07/fondatoare-GermanLingua-Svetlana-Diordiev.png`,
+  founder: "/images/founder.jpg",
   stories: [
     `${WP}/2022/07/Marina-Bulat.png`,
     `${WP}/2022/07/Aliona-Cojocaru.png`,

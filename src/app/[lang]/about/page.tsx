@@ -64,7 +64,7 @@ export default async function AboutPage({ params }: PageProps<"/[lang]/about">) 
           <div aria-hidden className="absolute -right-4 -top-4 sm:-right-5 sm:-top-5 h-full w-full rounded-[36px] border-2 border-brand" />
           <div className="relative overflow-hidden rounded-[36px] bg-mist">
             {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img src={media.founder} alt={dict.founder.name} loading="lazy" className="aspect-[4/5] w-full object-cover object-top" />
+            <img src={media.founder} alt={dict.founder.name} loading="lazy" className="aspect-[4/5] w-full object-cover object-[center_40%] origin-[50%_45%] scale-[1.4]" />
           </div>
         </div>
         <div>
