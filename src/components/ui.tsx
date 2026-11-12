@@ -106,7 +106,7 @@ export function PageHero({
       ) : (
         <>
           <div aria-hidden className="absolute -left-24 -top-24 -z-10 h-[380px] w-[380px] rounded-full bg-brand/45 blur-[130px]" />
-          <div aria-hidden className="float absolute -right-16 top-10 -z-10 h-64 w-64 rounded-full border-[26px] border-gold/20" />
+          <div aria-hidden className="float absolute hidden sm:block -right-16 top-10 -z-10 h-64 w-64 rounded-full border-[26px] border-gold/20" />
         </>
       )}
       <div className={`container-x ${image ? "flex flex-col justify-center pb-10 pt-4 md:pb-14 lg:min-h-[500px] lg:py-28" : "py-11 md:py-24"}`}>
@@ -130,7 +130,7 @@ export function CtaBand({ lang, cta }: { lang: Locale; cta: Dict["cta"] }) {
     <section className="container-x">
       <div data-reveal="zoom" className="relative isolate overflow-hidden rounded-[28px] bg-brand px-6 py-10 text-white md:rounded-[36px] md:px-16 md:py-16">
         <div aria-hidden className="absolute -right-20 -top-24 -z-10 h-72 w-72 rounded-full bg-white/10" />
-        <div aria-hidden className="float absolute -bottom-24 right-40 -z-10 h-56 w-56 rounded-full border-[22px] border-gold/60" />
+        <div aria-hidden className="float absolute hidden sm:block -bottom-24 right-40 -z-10 h-56 w-56 rounded-full border-[22px] border-gold/60" />
         <div className="flex flex-col items-start justify-between gap-8 md:flex-row md:items-center">
           <div>
             <h2 className="text-[26px] font-bold tracking-tight sm:text-[40px]">{cta.title}</h2>

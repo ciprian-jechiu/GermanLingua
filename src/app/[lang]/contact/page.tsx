@@ -13,11 +13,11 @@ export async function generateMetadata({ params }: PageProps<"/[lang]/contact">)
 export default async function ContactPage({ params }: PageProps<"/[lang]/contact">) {
   const { lang, dict } = getDictionary((await params).lang);
   const p = dict.contactPage;
-  const cards: { icon: IconName; label: string; value: string; href?: string; wide?: boolean }[] = [
-    { icon: "pin", label: p.address, value: dict.top.address, wide: true },
+  const cards: { icon: IconName; label: string; value: string; href?: string }[] = [
+    { icon: "pin", label: p.address, value: dict.top.address },
     { icon: "phone", label: p.phone, value: site.phone, href: site.phoneHref },
     { icon: "clock", label: p.hours, value: dict.top.hours },
-    { icon: "mail", label: p.email, value: site.email, href: `mailto:${site.email}`, wide: true },
+    { icon: "mail", label: p.email, value: site.email, href: `mailto:${site.email}` },
   ];
 
   return (
@@ -25,13 +25,13 @@ export default async function ContactPage({ params }: PageProps<"/[lang]/contact
       <PageHero lang={lang} home={dict.nav.home} crumb={p.title} title={p.title} lead={p.lead} image={media.heroContact} position="center 28%" />
 
       <section className="container-x py-12 lg:py-24">
-        <div className="grid grid-cols-2 gap-3 sm:gap-5 lg:grid-cols-4">
+        <div className="grid gap-3 sm:grid-cols-2 sm:gap-5 lg:grid-cols-4">
           {cards.map((card, i) => (
-            <div key={card.label} data-reveal data-delay={i + 1} className={`group rounded-[20px] border border-line p-4 shadow-soft transition-all duration-500 hover:-translate-y-2 hover:border-brand sm:rounded-[28px] sm:p-7 ${card.wide ? "col-span-2 flex items-center gap-4 sm:col-span-1 sm:block" : ""}`}>
+            <div key={card.label} data-reveal data-delay={i + 1} className={`group rounded-[20px] border border-line p-4 shadow-soft transition-all duration-500 hover:-translate-y-2 hover:border-brand sm:rounded-[28px] sm:p-7 flex items-center gap-4 sm:block`}>
               <span className="blob grid h-11 w-11 shrink-0 place-items-center bg-brand text-white sm:h-14 sm:w-14">
                 <Icon name={card.icon} size={24} className="h-5 w-5 sm:h-6 sm:w-6" />
               </span>
-              <div className={card.wide ? "min-w-0 sm:mt-5" : "mt-3.5 sm:mt-5"}>
+              <div className="min-w-0 sm:mt-5">
               <p className="text-[11.5px] font-semibold uppercase tracking-[0.12em] text-muted sm:text-sm">{card.label}</p>
               {card.href ? (
                 <a href={card.href} className="mt-1 block break-words text-[15px] font-bold leading-snug hover:text-brand sm:mt-1.5 sm:text-lg">

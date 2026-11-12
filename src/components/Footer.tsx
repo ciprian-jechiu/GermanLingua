@@ -31,9 +31,9 @@ export default function Footer({ lang, dict }: { lang: Locale; dict: Dict }) {
           </div>
         </div>
 
-        <div>
+        <div className="col-span-2 lg:col-span-1">
           <h3 className="mb-4 text-[17px] font-semibold lg:mb-5 lg:text-lg">{dict.footer.company}</h3>
-          <ul className="space-y-2.5 text-[14.5px] lg:space-y-3 lg:text-[15px]">
+          <ul className="grid grid-cols-2 gap-x-6 gap-y-2.5 text-[14.5px] lg:block lg:space-y-3 lg:text-[15px]">
             <li><Link className={linkClass} href={href()}>{dict.nav.home}</Link></li>
             <li><Link className={linkClass} href={href("/courses")}>{dict.nav.allCourses}</Link></li>
             <li><Link className={linkClass} href={href("/about")}>{dict.nav.about}</Link></li>
@@ -43,9 +43,9 @@ export default function Footer({ lang, dict }: { lang: Locale; dict: Dict }) {
         </div>
 
         {cols.map((col) => (
-          <div key={col.label}>
+          <div key={col.label} className="col-span-2 lg:col-span-1">
             <h3 className="mb-4 text-[17px] font-semibold lg:mb-5 lg:text-lg">{col.label}</h3>
-            <ul className="space-y-2.5 text-[14.5px] lg:space-y-3 lg:text-[15px]">
+            <ul className="grid grid-cols-2 gap-x-6 gap-y-2.5 text-[14.5px] lg:block lg:space-y-3 lg:text-[15px]">
               {col.list.map((c) => (
                 <li key={c.slug}>
                   <Link className={linkClass} href={href(`/courses/${c.slug}`)}>
