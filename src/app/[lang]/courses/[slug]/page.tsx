@@ -32,13 +32,25 @@ export default async function CoursePage({ params }: PageProps<"/[lang]/courses/
 
   return (
     <>
-      <PageHero lang={lang} home={dict.nav.home} crumb={dict.nav.courses} title={c.title} lead={c.level} />
+      <PageHero lang={lang} home={dict.nav.home} crumb={dict.nav.courses} title={c.title} lead={course.full ? `${c.level} · ${dict.labels.fullLevel.toLowerCase()}` : c.level} />
 
       <div className="container-x grid gap-10 py-12 lg:grid-cols-[1fr_420px] lg:gap-16 lg:py-24">
         <div>
           <p data-reveal className="text-[18px] leading-relaxed text-ink sm:text-[22px]">
             {c.intro}
           </p>
+
+          {course.full && (
+            <div data-reveal className="mt-8 flex gap-4 rounded-[24px] border border-brand/25 bg-sun-soft p-5 sm:mt-10 sm:gap-5 sm:p-7">
+              <span className="grid h-11 w-11 shrink-0 place-items-center rounded-full bg-brand text-white sm:h-12 sm:w-12">
+                <Icon name="check" size={22} />
+              </span>
+              <div>
+                <h2 className="text-[19px] font-bold leading-snug sm:text-[22px]">{dict.coursePage.fullTitle.replaceAll("{level}", course.badge)}</h2>
+                <p className="mt-2 text-[15px] leading-relaxed text-ink/80 sm:text-[16px]">{dict.coursePage.fullNote.replaceAll("{level}", course.badge)}</p>
+              </div>
+            </div>
+          )}
 
           <h2 data-reveal className="mb-5 mt-10 text-[24px] font-bold tracking-tight sm:mb-6 sm:mt-14 sm:text-3xl">
             {dict.coursePage.offers}

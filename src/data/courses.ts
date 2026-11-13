@@ -16,6 +16,8 @@ export type CourseSlug =
 export type Course = {
   slug: CourseSlug;
   group: "general" | "special";
+  /** Nivel CEFR parcurs integral într-un singur modul (fără A1.1, A1.2 etc.). */
+  full?: boolean;
   /** Textul mare de pe coperta cardului. */
   badge: string;
   /** module = nivel complet în grup; individual = lecții 1:1; business = companii. */
@@ -25,11 +27,11 @@ export type Course = {
 };
 
 export const courses: Course[] = [
-  { slug: "a1", group: "general", badge: "A1", kind: "module" },
-  { slug: "a2", group: "general", badge: "A2", kind: "module" },
-  { slug: "b1", group: "general", badge: "B1", kind: "module" },
-  { slug: "b2", group: "general", badge: "B2", kind: "module" },
-  { slug: "c1", group: "general", badge: "C1", kind: "module" },
+  { slug: "a1", group: "general", badge: "A1", kind: "module", full: true },
+  { slug: "a2", group: "general", badge: "A2", kind: "module", full: true },
+  { slug: "b1", group: "general", badge: "B1", kind: "module", full: true },
+  { slug: "b2", group: "general", badge: "B2", kind: "module", full: true },
+  { slug: "c1", group: "general", badge: "C1", kind: "module", full: true },
   { slug: "online", group: "general", badge: "Zoom", kind: "module" },
   { slug: "group", group: "general", badge: "5–7", kind: "module" },
   { slug: "individual", group: "special", badge: "1:1", kind: "individual", semi: true, minLessons: true },

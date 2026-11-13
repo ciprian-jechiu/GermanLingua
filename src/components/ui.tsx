@@ -53,9 +53,16 @@ export function CourseCard({ course, lang, dict, delay }: { course: Course; lang
         <div aria-hidden className="absolute -right-10 -top-16 h-52 w-52 rounded-full bg-brand transition-transform duration-700 group-hover:scale-125" />
         <div aria-hidden className="absolute -bottom-14 right-16 h-28 w-28 rounded-full border-[14px] border-white/90 transition-transform duration-700 group-hover:-translate-y-3" />
         <span className="relative font-extrabold text-ink text-[46px] tracking-tight sm:text-[64px]">{course.badge}</span>
-        <span className="absolute left-5 top-5 rounded-full bg-white px-3.5 py-1.5 text-xs font-semibold text-ink">
-          {course.group === "general" ? dict.nav.general : dict.nav.specialized}
-        </span>
+        {course.full ? (
+          <span className="absolute left-5 top-5 inline-flex items-center gap-1.5 rounded-full bg-brand px-3.5 py-1.5 text-xs font-bold text-white">
+            <Icon name="check" size={13} />
+            {dict.labels.fullLevel}
+          </span>
+        ) : (
+          <span className="absolute left-5 top-5 rounded-full bg-white px-3.5 py-1.5 text-xs font-semibold text-ink">
+            {course.group === "general" ? dict.nav.general : dict.nav.specialized}
+          </span>
+        )}
       </div>
       <div className="flex flex-1 flex-col px-5 pb-5 pt-3 sm:px-7 sm:pb-7 sm:pt-4">
         <div className="mb-3 flex flex-wrap items-center gap-x-5 gap-y-1 text-sm text-muted">
