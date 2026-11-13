@@ -75,6 +75,12 @@ export function CourseCard({ course, lang, dict, delay }: { course: Course; lang
         <h3 className="text-xl font-bold leading-snug transition-colors group-hover:text-brand">{c.title}</h3>
         <p className="mt-1 text-sm font-medium text-brand">{c.level}</p>
         <p className="mt-3 flex-1 text-[15px] leading-relaxed text-muted">{c.short}</p>
+        {course.kind === "module" && (
+          <p className="mt-4 inline-flex items-center gap-2 self-start rounded-full bg-sun-soft px-3.5 py-1.5 text-[13px] font-semibold text-ink">
+            <Icon name="calendar" size={15} className="text-brand" />
+            {dict.labels.newGroups}: {dict.labels.every2Weeks.toLowerCase()}
+          </p>
+        )}
         <span className="mt-6 inline-flex items-center gap-2 border-t border-line pt-5 text-[15px] font-semibold">
           {dict.coursesSec.details}
           <Icon name="arrow" size={17} className="text-brand transition-transform duration-300 group-hover:translate-x-1.5" />

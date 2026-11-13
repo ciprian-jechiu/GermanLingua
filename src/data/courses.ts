@@ -58,6 +58,7 @@ export function courseFacts(course: Course, l: Dict["labels"]): { label: string;
   if (course.kind === "module") {
     return [
       { label: l.duration, value: `10 ${l.weeks}` },
+      { label: l.newGroups, value: l.every2Weeks },
       { label: l.lessonCount, value: `30 ${l.lessons}` },
       { label: l.lessonLength, value: "90 min" },
       { label: l.frequency, value: `3 ${l.perWeek}` },

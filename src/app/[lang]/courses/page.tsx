@@ -22,12 +22,19 @@ export default async function CoursesPage({ params }: PageProps<"/[lang]/courses
       <PageHero lang={lang} home={dict.nav.home} crumb={dict.nav.courses} title={dict.coursesPage.title} lead={dict.coursesPage.lead} image={media.heroCourses} position="center 35%" />
 
       <div className="container-x py-12 lg:py-24">
-        <p data-reveal className="mb-10 flex items-center gap-4 rounded-[20px] bg-mist px-5 py-4 text-[15.5px] font-medium sm:mb-14 sm:rounded-[24px] sm:px-7 sm:py-5 sm:text-[17px]">
-          <span className="grid h-11 w-11 shrink-0 place-items-center rounded-full bg-brand text-white">
-            <Icon name="gift" size={21} />
-          </span>
-          {dict.coursePage.discount}
-        </p>
+        <div className="mb-10 grid gap-3 sm:mb-14 md:grid-cols-2 md:gap-4">
+          {[
+            { icon: "calendar" as const, text: dict.coursePage.groupsTitle },
+            { icon: "gift" as const, text: dict.coursePage.discount },
+          ].map((note) => (
+            <p key={note.text} data-reveal className="flex items-center gap-4 rounded-[20px] bg-mist px-5 py-4 text-[15.5px] font-medium sm:rounded-[24px] sm:px-7 sm:py-5 sm:text-[17px]">
+              <span className="grid h-11 w-11 shrink-0 place-items-center rounded-full bg-brand text-white">
+                <Icon name={note.icon} size={21} />
+              </span>
+              {note.text}
+            </p>
+          ))}
+        </div>
 
         {groups.map((group) => (
           <section key={group.label} className="mb-12 last:mb-0 sm:mb-20">

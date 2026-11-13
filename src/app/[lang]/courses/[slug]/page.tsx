@@ -52,6 +52,18 @@ export default async function CoursePage({ params }: PageProps<"/[lang]/courses/
             </div>
           )}
 
+          {course.kind === "module" && (
+            <div data-reveal className={`${course.full ? "mt-4" : "mt-8 sm:mt-10"} flex gap-4 rounded-[24px] border border-line bg-mist p-5 sm:gap-5 sm:p-7`}>
+              <span className="grid h-11 w-11 shrink-0 place-items-center rounded-full bg-sun text-ink sm:h-12 sm:w-12">
+                <Icon name="calendar" size={22} />
+              </span>
+              <div>
+                <h2 className="text-[19px] font-bold leading-snug sm:text-[22px]">{dict.coursePage.groupsTitle}</h2>
+                <p className="mt-2 text-[15px] leading-relaxed text-ink/80 sm:text-[16px]">{dict.coursePage.groupsNote}</p>
+              </div>
+            </div>
+          )}
+
           <h2 data-reveal className="mb-5 mt-10 text-[24px] font-bold tracking-tight sm:mb-6 sm:mt-14 sm:text-3xl">
             {dict.coursePage.offers}
           </h2>
