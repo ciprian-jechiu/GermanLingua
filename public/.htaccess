@@ -1,0 +1,44 @@
+DirectoryIndex index.html index.php
+ErrorDocument 404 /404.html
+Options -Indexes
+
+RewriteEngine On
+
+# https + fără www
+RewriteCond %{HTTPS} off
+RewriteRule ^ https://germanlingua.md%{REQUEST_URI} [L,R=301]
+RewriteCond %{HTTP_HOST} ^www\. [NC]
+RewriteRule ^ https://germanlingua.md%{REQUEST_URI} [L,R=301]
+
+# Limbile scoase
+RewriteRule ^(de|en)/?$ /ro/ [R=302,L]
+RewriteRule ^(de|en)/(.*)$ /ro/$2 [R=302,L]
+
+# Adresele vechi (WordPress) -> paginile noi
+RewriteRule ^cursuri-limba-germana/?$ /ro/courses/ [R=301,L]
+RewriteRule ^curs-limba-germana-(a1|a2|b1|b2|c1)/?$ /ro/courses/$1/ [R=301,L]
+RewriteRule ^cursuri-limba-germana-online/?$ /ro/courses/online/ [R=301,L]
+RewriteRule ^cursuri-de-limba-germana-in-grup-cu-prezenta-fizica/?$ /ro/courses/group/ [R=301,L]
+RewriteRule ^curs-limba-germana-individual-semiindividual/?$ /ro/courses/individual/ [R=301,L]
+RewriteRule ^curs-limba-germana-pregatire-pentru-teste/?$ /ro/courses/exams/ [R=301,L]
+RewriteRule ^cursuri-limba-germana-medicala/?$ /ro/courses/medical/ [R=301,L]
+RewriteRule ^cursuri-limba-germana-pentru-companii/?$ /ro/courses/business/ [R=301,L]
+RewriteRule ^despre-noi1/?$ /ro/about/ [R=301,L]
+RewriteRule ^contacte/?$ /ro/contact/ [R=301,L]
+RewriteRule ^inscriere-curs-limba-germana/?$ /ro/enroll/ [R=301,L]
+
+# Rădăcina duce la româna (index.html face același lucru ca rezervă)
+RewriteRule ^$ /ro/ [R=302,L]
+
+<IfModule mod_deflate.c>
+AddOutputFilterByType DEFLATE text/html text/css application/javascript application/json image/svg+xml
+</IfModule>
+<IfModule mod_expires.c>
+ExpiresActive On
+ExpiresByType image/webp "access plus 1 year"
+ExpiresByType image/jpeg "access plus 1 year"
+ExpiresByType image/png "access plus 1 year"
+ExpiresByType font/woff2 "access plus 1 year"
+ExpiresByType text/css "access plus 1 year"
+ExpiresByType application/javascript "access plus 1 year"
+</IfModule>

@@ -16,7 +16,7 @@ export default function LeadForm({ form, lang, source, course, dark }: Props) {
     if (data.website) return; // capcană pentru boți
     setState("sending");
     try {
-      const res = await fetch("/api/lead", {
+      const res = await fetch("/api/lead.php", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ name: data.name, phone: data.phone, comment: data.comment, lang, source, course }),
