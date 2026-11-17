@@ -8,6 +8,7 @@ import { media, site } from "@/data/site";
 import { localeNames, locales, type Locale } from "@/i18n/config";
 import type { Dict } from "@/i18n/dictionaries/ro";
 import { Icon } from "./Icon";
+import Socials from "./Socials";
 
 type Props = { lang: Locale; nav: Dict["nav"]; titles: Record<string, string> };
 
@@ -99,6 +100,11 @@ export default function Header({ lang, nav, titles }: Props) {
         </nav>
 
         <div className="flex items-center gap-3">
+          <Socials
+            className="hidden gap-1.5 xl:flex"
+            size={16}
+            itemClass="grid h-9 w-9 place-items-center rounded-full bg-sun-soft text-ink transition-colors hover:bg-brand hover:text-white"
+          />
           <div className="hidden items-center rounded-full border border-line p-1 sm:flex" aria-label={nav.language}>
             {locales.map((l) => (
               <Link
@@ -154,6 +160,12 @@ export default function Header({ lang, nav, titles }: Props) {
               </Link>
             ))}
           </div>
+
+          <Socials
+            className="justify-between"
+            size={20}
+            itemClass="grid h-12 w-12 place-items-center rounded-full bg-sun-soft text-ink transition-colors hover:bg-brand hover:text-white"
+          />
 
           <nav className="flex flex-col text-lg font-medium">
             {[

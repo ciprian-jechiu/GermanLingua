@@ -1,6 +1,7 @@
 import { site } from "@/data/site";
 import type { Dict } from "@/i18n/dictionaries/ro";
-import { FacebookIcon, Icon, InstagramIcon } from "./Icon";
+import { Icon } from "./Icon";
+import Socials from "./Socials";
 
 export default function TopBar({ top }: { top: Dict["top"] }) {
   return (
@@ -8,12 +9,7 @@ export default function TopBar({ top }: { top: Dict["top"] }) {
       <div className="container-x flex h-11 items-stretch justify-between">
         <div className="relative -ml-8 flex items-center gap-3 bg-brand pl-8 pr-10 whitespace-nowrap font-medium text-white [clip-path:polygon(0_0,100%_0,calc(100%-18px)_100%,0_100%)]">
           <span>{top.follow}</span>
-          <a href={site.facebook} target="_blank" rel="noreferrer" aria-label="Facebook" className="grid h-7 w-7 place-items-center rounded-full bg-white/15 transition-colors hover:bg-white hover:text-brand">
-            <FacebookIcon size={14} />
-          </a>
-          <a href={site.instagram} target="_blank" rel="noreferrer" aria-label="Instagram" className="grid h-7 w-7 place-items-center rounded-full bg-white/15 transition-colors hover:bg-white hover:text-brand">
-            <InstagramIcon size={14} />
-          </a>
+          <Socials className="gap-2" size={14} itemClass="grid h-7 w-7 place-items-center rounded-full bg-white/15 transition-colors hover:bg-white hover:text-brand" />
         </div>
         <div className="flex items-center gap-6 whitespace-nowrap">
           <span className="flex items-center gap-2">

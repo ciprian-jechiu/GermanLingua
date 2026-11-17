@@ -12,6 +12,8 @@ export const site = {
   email: "hallo@germanlingua.md",
   facebook: "https://www.facebook.com/germanlinguamd",
   instagram: "https://www.instagram.com/germanlingua_cursuri_germana/",
+  whatsapp: "https://wa.me/37368390114",
+  telegram: "https://t.me/+37368390114",
   mapEmbed:
     "https://www.google.com/maps?q=GermanLingua%2C%20str.%20Serghei%20Lazo%2040%2C%20Chi%C8%99in%C4%83u&z=15&output=embed",
   exams: ["DSD", "TestDaF", "Goethe-Zertifikat B2", "telc Deutsch B2", "telc Medizin"],

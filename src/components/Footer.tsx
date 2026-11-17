@@ -3,7 +3,8 @@ import { courses } from "@/data/courses";
 import { media, site } from "@/data/site";
 import type { Locale } from "@/i18n/config";
 import type { Dict } from "@/i18n/dictionaries/ro";
-import { FacebookIcon, Icon, InstagramIcon } from "./Icon";
+import { Icon } from "./Icon";
+import Socials from "./Socials";
 
 export default function Footer({ lang, dict }: { lang: Locale; dict: Dict }) {
   const href = (path = "") => `/${lang}${path}`;
@@ -21,14 +22,7 @@ export default function Footer({ lang, dict }: { lang: Locale; dict: Dict }) {
           {/* eslint-disable-next-line @next/next/no-img-element */}
           <img src={media.logoInverted} alt={site.name} className="h-12 w-auto" />
           <p className="mt-5 max-w-xs text-[15px] leading-relaxed text-white/80">{dict.footer.about}</p>
-          <div className="mt-6 flex gap-3">
-            <a href={site.facebook} target="_blank" rel="noreferrer" aria-label="Facebook" className="grid h-11 w-11 place-items-center rounded-full bg-white/10 transition-colors hover:bg-sun hover:text-ink">
-              <FacebookIcon />
-            </a>
-            <a href={site.instagram} target="_blank" rel="noreferrer" aria-label="Instagram" className="grid h-11 w-11 place-items-center rounded-full bg-white/10 transition-colors hover:bg-sun hover:text-ink">
-              <InstagramIcon />
-            </a>
-          </div>
+          <Socials className="mt-6 gap-3" size={18} itemClass="grid h-11 w-11 place-items-center rounded-full bg-white/10 transition-colors hover:bg-sun hover:text-ink" />
         </div>
 
         <div className="col-span-2 lg:col-span-1">
