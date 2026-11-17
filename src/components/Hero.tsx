@@ -1,8 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { useCallback, useEffect, useRef, useState } from "react";
-import gsap from "gsap";
+import { useCallback, useEffect, useState } from "react";
 import type { Dict } from "@/i18n/dictionaries/ro";
 import { Icon } from "./Icon";
 
@@ -10,8 +9,7 @@ type Props = { hero: Dict["hero"]; images: string[]; enrollHref: string; courses
 
 export default function Hero({ hero, images, enrollHref, coursesHref }: Props) {
   const [index, setIndex] = useState(0);
-  const textRef = useRef<HTMLDivElement>(null);
-  const count = hero.slides.length;
+    const count = hero.slides.length;
   const slide = hero.slides[index];
 
   const go = useCallback((dir: number) => setIndex((i) => (i + dir + count) % count), [count]);
@@ -20,19 +18,6 @@ export default function Hero({ hero, images, enrollHref, coursesHref }: Props) {
     const timer = setInterval(() => go(1), 8000);
     return () => clearInterval(timer);
   }, [go, index]);
-
-  useEffect(() => {
-    if (!textRef.current) return;
-    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
-    const ctx = gsap.context(() => {
-      gsap.fromTo(
-        "[data-hero]",
-        { y: 34, opacity: 0 },
-        { y: 0, opacity: 1, duration: 0.9, ease: "power3.out", stagger: 0.1 },
-      );
-    }, textRef);
-    return () => ctx.revert();
-  }, [index]);
 
   return (
     <section className="relative isolate overflow-hidden bg-sun text-ink">
@@ -43,7 +28,14 @@ export default function Hero({ hero, images, enrollHref, coursesHref }: Props) {
             key={src}
             className={`absolute inset-0 transition-opacity duration-[1200ms] ${i === index % images.length ? "opacity-100" : "opacity-0"}`}
           >
-            <div className="kenburns h-full w-full bg-cover bg-[position:30%_20%]" style={{ backgroundImage: `url(${src})` }} />
+            <img
+              src={src}
+              alt=""
+              decoding="async"
+              fetchPriority={i === 0 ? "high" : "low"}
+              loading={i === 0 ? "eager" : "lazy"}
+              className="kenburns h-full w-full object-cover object-[30%_20%]"
+            />
           </div>
         ))}
         <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(255,210,90,0)_55%,#ffd25a_100%)] lg:hidden" />
@@ -51,7 +43,7 @@ export default function Hero({ hero, images, enrollHref, coursesHref }: Props) {
       </div>
 
       <div className="container-x relative pb-36 pt-5 md:pb-56 md:pt-10 lg:pt-36">
-        <div ref={textRef} className="max-w-[720px] lg:max-w-[560px] lg:pl-10">
+        <div key={index} className="hero-text max-w-[720px] lg:max-w-[560px] lg:pl-10">
           <p data-hero className="mb-3 inline-flex items-center gap-3 text-[12px] font-semibold uppercase tracking-[0.16em] text-brand sm:mb-5 sm:text-sm">
             <span className="h-px w-10 bg-brand" />
             {slide.tag}

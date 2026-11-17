@@ -18,17 +18,17 @@ export const site = {
 };
 
 export const media = {
-  heroHome: "/images/hero-home.jpg",
-  heroCourses: "/images/hero-courses.jpg",
-  heroAbout: "/images/hero-about.jpg",
-  heroContact: "/images/hero-contact.jpg",
+  heroHome: "/images/hero-home.webp",
+  heroCourses: "/images/hero-courses.webp",
+  heroAbout: "/images/hero-about.webp",
+  heroContact: "/images/hero-contact.webp",
   logo: `${WP}/2022/07/GermanLingua_logo.png`,
   logoInverted: `${WP}/2022/08/GermanLingua_logo_inverted.png`,
   hero: `${WP}/2022/07/curs-germana-chisinau-GermanLingua.jpg`,
   group: `${WP}/2022/07/curs-limba-germana-in-grup-prezenta-fizica-GermanLingua.jpg`,
   online: `${WP}/2022/07/germana-in-chisinau-si-online-GermanLingua.jpg`,
   a2: `${WP}/2022/07/curs-limba-germana-a2-GermanLingua.jpg`,
-  founder: "/images/founder.jpg",
+  founder: "/images/founder.webp",
   stories: [
     `${WP}/2022/07/Marina-Bulat.png`,
     `${WP}/2022/07/Aliona-Cojocaru.png`,

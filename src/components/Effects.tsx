@@ -59,6 +59,7 @@ export default function Effects() {
       requestAnimationFrame(tick);
     };
 
+    (window as unknown as { __fx?: number }).__fx = 1;
     const observer = new IntersectionObserver(
       (entries) => {
         for (const entry of entries) {

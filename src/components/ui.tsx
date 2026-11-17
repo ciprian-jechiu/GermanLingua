@@ -112,7 +112,7 @@ export function PageHero({
     <section className="relative isolate overflow-hidden bg-sun text-ink">
       {image ? (
         <div aria-hidden className="relative h-[190px] w-full overflow-hidden sm:h-[280px] lg:absolute lg:inset-y-0 lg:right-0 lg:-z-10 lg:h-auto lg:w-[56%]">
-          <div className="kenburns h-full w-full bg-cover" style={{ backgroundImage: `url(${image})`, backgroundPosition: position }} />
+          <img src={image} alt="" fetchPriority="high" decoding="async" className="kenburns h-full w-full object-cover" style={{ objectPosition: position }} />
           <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(255,210,90,0)_50%,#ffd25a_100%)] lg:hidden" />
           <div className="absolute inset-0 hidden bg-[linear-gradient(90deg,#ffd25a_0%,rgba(255,210,90,0.55)_20%,rgba(255,210,90,0)_46%)] lg:block" />
         </div>

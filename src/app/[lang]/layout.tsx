@@ -31,7 +31,15 @@ export default async function RootLayout({ children, params }: LayoutProps<"/[la
   const titles = Object.fromEntries(courses.map((c) => [c.slug, dict.courses[c.slug].title]));
 
   return (
-    <html lang={lang} className="h-full antialiased">
+    <html lang={lang} className="h-full antialiased" suppressHydrationWarning>
+      <head>
+        <script
+          // ascunde animațiile de apariție doar dacă JS merge; după 3 s le arată oricum
+          dangerouslySetInnerHTML={{
+            __html: `document.documentElement.classList.add('js');setTimeout(function(){if(window.__fx)return;document.querySelectorAll('[data-reveal],.bar-fill').forEach(function(e){e.classList.add('in')})},3000)`,
+          }}
+        />
+      </head>
       <body className="flex min-h-full flex-col">
         <noscript>
           <style>{`[data-reveal]{opacity:1!important;transform:none!important}.bar-fill{width:var(--w)!important}`}</style>

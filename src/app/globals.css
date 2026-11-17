@@ -184,8 +184,21 @@ body {
   }
 }
 
-/* Apariții la derulare */
-[data-reveal] {
+/* Textul din Hero apare imediat, din CSS, fără să aștepte JavaScript */
+.hero-text [data-hero] {
+  animation: hero-in 0.8s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+.hero-text [data-hero]:nth-child(2) { animation-delay: 0.08s; }
+.hero-text [data-hero]:nth-child(3) { animation-delay: 0.16s; }
+.hero-text [data-hero]:nth-child(4) { animation-delay: 0.24s; }
+@media (prefers-reduced-motion: reduce) { .hero-text [data-hero] { animation: none; } }
+@keyframes hero-in {
+  from { opacity: 0; transform: translateY(24px); }
+  to { opacity: 1; transform: none; }
+}
+
+/* Apariții la derulare (ascunse doar când JavaScript rulează) */
+.js [data-reveal] {
   opacity: 0;
   transform: translateY(28px);
   transition:
@@ -193,13 +206,13 @@ body {
     transform 0.8s cubic-bezier(0.22, 1, 0.36, 1);
   will-change: opacity, transform;
 }
-[data-reveal="left"] {
+.js [data-reveal="left"] {
   transform: translateX(-36px);
 }
-[data-reveal="right"] {
+.js [data-reveal="right"] {
   transform: translateX(36px);
 }
-[data-reveal="zoom"] {
+.js [data-reveal="zoom"] {
   transform: scale(0.94);
 }
 [data-reveal].in {
@@ -220,7 +233,7 @@ body {
 }
 
 /* Barele de progres se umplu când intră în ecran */
-.bar-fill {
+.js .bar-fill {
   width: 0;
   transition: width 1.4s cubic-bezier(0.22, 1, 0.36, 1) 0.2s;
 }
