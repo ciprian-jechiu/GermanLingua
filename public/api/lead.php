@@ -36,6 +36,12 @@ if (count($hits) >= 5) out(429, false);
 $hits[] = time();
 @file_put_contents($f, implode(',', $hits));
 
+// Setările secrete (adresa tabelului Google) stau pe server, în afara site-ului public:
+// /home/<user>/gl-config.php  ->  <?php return ['sheet_url' => '...', 'sheet_secret' => '...'];
+$cfgFile = dirname($_SERVER['DOCUMENT_ROOT']) . '/gl-config.php';
+$cfg = is_file($cfgFile) ? (include $cfgFile) : [];
+
+// 1) Email către școală
 $to = 'hallo@germanlingua.md';
 $subject = '=?UTF-8?B?' . base64_encode('Cerere nouă de pe site: ' . $name) . '?=';
 $body = "Cerere nouă de pe germanlingua.md\n\n"
@@ -45,6 +51,28 @@ $body = "Cerere nouă de pe germanlingua.md\n\n"
 $headers = "From: GermanLingua <noreply@germanlingua.md>\r\n"
          . "Reply-To: $to\r\n"
          . "Content-Type: text/plain; charset=UTF-8\r\n";
+$mailOk = @mail($to, $subject, $body, $headers, '-f noreply@germanlingua.md');
 
-if (!@mail($to, $subject, $body, $headers, '-f noreply@germanlingua.md')) out(500, false);
+// 2) Rând nou în tabelul Google „Inscrieri pe site” (coloanele A, B, C)
+$sheetOk = false;
+if (!empty($cfg['sheet_url']) && function_exists('curl_init')) {
+    $ch = curl_init($cfg['sheet_url']);
+    curl_setopt_array($ch, [
+        CURLOPT_POST => true,
+        CURLOPT_POSTFIELDS => json_encode([
+            'secret' => $cfg['sheet_secret'] ?? '',
+            'name' => $name, 'phone' => $phone, 'comment' => $comment, 'course' => $course,
+        ], JSON_UNESCAPED_UNICODE),
+        CURLOPT_HTTPHEADER => ['Content-Type: application/json'],
+        CURLOPT_FOLLOWLOCATION => true,
+        CURLOPT_POSTREDIR => 0,
+        CURLOPT_RETURNTRANSFER => true,
+        CURLOPT_TIMEOUT => 15,
+    ]);
+    $res = curl_exec($ch);
+    curl_close($ch);
+    $sheetOk = is_string($res) && strpos($res, '"ok":true') !== false;
+}
+
+if (!$mailOk && !$sheetOk) out(500, false);
 out(200, true);
