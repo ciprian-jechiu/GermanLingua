@@ -1,3 +1,4 @@
+import { alternates } from "@/lib/seo";
 import type { Metadata } from "next";
 import { Icon, type IconName } from "@/components/Icon";
 import LeadForm from "@/components/LeadForm";
@@ -6,8 +7,8 @@ import { media, site } from "@/data/site";
 import { getDictionary } from "@/i18n";
 
 export async function generateMetadata({ params }: PageProps<"/[lang]/contact">): Promise<Metadata> {
-  const { dict } = getDictionary((await params).lang);
-  return { title: dict.contactPage.title, description: dict.contactPage.lead };
+  const { lang, dict } = getDictionary((await params).lang);
+  return { alternates: alternates(lang, "/contact"), title: dict.contactPage.title, description: dict.contactPage.lead };
 }
 
 export default async function ContactPage({ params }: PageProps<"/[lang]/contact">) {

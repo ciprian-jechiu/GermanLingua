@@ -3,6 +3,7 @@
 import { useState, type FormEvent } from "react";
 import type { Dict } from "@/i18n/dictionaries/ro";
 import { Icon } from "./Icon";
+import { sourceData, track } from "@/lib/track";
 
 type Props = { form: Dict["form"]; lang: string; source: string; course?: string; dark?: boolean };
 
@@ -19,10 +20,11 @@ export default function LeadForm({ form, lang, source, course, dark }: Props) {
       const res = await fetch("/api/lead.php", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ name: data.name, phone: data.phone, comment: data.comment, lang, source, course }),
+        body: JSON.stringify({ name: data.name, phone: data.phone, comment: data.comment, lang, source, course, origin: sourceData() }),
       });
       if (!res.ok) throw new Error("bad status");
       formEl.reset();
+      track("form_submit", { form: source, course: course || "" });
       setState("done");
     } catch {
       setState("error");

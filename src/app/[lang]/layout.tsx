@@ -10,6 +10,8 @@ import TopBar from "@/components/TopBar";
 import { courses } from "@/data/courses";
 import { getDictionary } from "@/i18n";
 import { locales } from "@/i18n/config";
+import { schoolJsonLd } from "@/lib/seo";
+import Tracking from "@/components/Tracking";
 
 export function generateStaticParams() {
   return locales.map((lang) => ({ lang }));
@@ -21,7 +23,6 @@ export async function generateMetadata({ params }: LayoutProps<"/[lang]">): Prom
     metadataBase: new URL(process.env.NEXT_PUBLIC_SITE_URL ?? "https://germanlingua.md"),
     title: { default: dict.meta.title, template: "%s — GermanLingua" },
     description: dict.meta.description,
-    alternates: { languages: Object.fromEntries(locales.map((l) => [l, `/${l}`])) },
     openGraph: { title: dict.meta.title, description: dict.meta.description, locale: lang, type: "website" },
   };
 }
@@ -50,6 +51,11 @@ export default async function RootLayout({ children, params }: LayoutProps<"/[la
         <Footer lang={lang} dict={dict} />
         <MobileBar lang={lang} call={dict.about.call} enroll={dict.nav.enroll} />
         <Effects />
+        <Tracking />
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(schoolJsonLd(lang, dict.meta.description)) }}
+        />
       </body>
     </html>
   );

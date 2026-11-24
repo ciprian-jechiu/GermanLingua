@@ -1,6 +1,7 @@
 <?php
 // Primește formularul de înscriere și îl trimite pe email la hallo@germanlingua.md.
 header('Content-Type: application/json; charset=utf-8');
+date_default_timezone_set('Europe/Chisinau');
 header('X-Robots-Tag: noindex');
 
 function out($code, $ok) { http_response_code($code); echo json_encode(['ok' => $ok]); exit; }
@@ -24,6 +25,10 @@ $comment = is_string($d['comment'] ?? null) ? mb_substr(trim($d['comment']), 0, 
 $lang    = clean($d['lang'] ?? '', 5);
 $source  = clean($d['source'] ?? '', 60);
 $course  = clean($d['course'] ?? '', 60);
+$o       = is_array($d['origin'] ?? null) ? $d['origin'] : [];
+$origin  = clean($o['label'] ?? '', 200) ?: 'necunoscut';
+$landing = clean($o['landing'] ?? '', 120);
+$gclid   = clean($o['gclid'] ?? '', 200);
 
 if (mb_strlen($name) < 2 || strlen(preg_replace('/\D/', '', $phone)) < 6) out(400, false);
 
@@ -47,7 +52,11 @@ $subject = '=?UTF-8?B?' . base64_encode('Cerere nouă de pe site: ' . $name) . '
 $body = "Cerere nouă de pe germanlingua.md\n\n"
       . "Nume: $name\nTelefon: $phone\n"
       . ($course ? "Curs: $course\n" : '')
-      . "Limba site: $lang\nSecțiune: $source\n\nMesaj:\n" . ($comment ?: '-') . "\n";
+      . "Limba site: $lang\nSecțiune: $source\n"
+      . "Venit de la: $origin\n"
+      . ($landing ? "Prima pagină văzută: $landing\n" : '')
+      . ($gclid ? "Cod clic Google Ads (gclid): $gclid\n" : '')
+      . "\nMesaj:\n" . ($comment ?: '-') . "\n";
 $headers = "From: GermanLingua <noreply@germanlingua.md>\r\n"
          . "Reply-To: $to\r\n"
          . "Content-Type: text/plain; charset=UTF-8\r\n";
@@ -61,7 +70,8 @@ if (!empty($cfg['sheet_url']) && function_exists('curl_init')) {
         CURLOPT_POST => true,
         CURLOPT_POSTFIELDS => json_encode([
             'secret' => $cfg['sheet_secret'] ?? '',
-            'name' => $name, 'phone' => $phone, 'comment' => $comment, 'course' => $course,
+            'name' => $name, 'phone' => $phone, 'course' => $course,
+            'comment' => trim($comment . ($comment ? ' · ' : '') . 'Sursa: ' . $origin),
         ], JSON_UNESCAPED_UNICODE),
         CURLOPT_HTTPHEADER => ['Content-Type: application/json'],
         CURLOPT_FOLLOWLOCATION => true,
@@ -73,6 +83,11 @@ if (!empty($cfg['sheet_url']) && function_exists('curl_init')) {
     curl_close($ch);
     $sheetOk = is_string($res) && strpos($res, '"ok":true') !== false;
 }
+
+// 3) Numărătoare pe server (pentru pagina de statistici)
+@file_put_contents(dirname($_SERVER['DOCUMENT_ROOT']) . '/gl-events.csv',
+    implode(';', [date('Y-m-d H:i:s'), 'form_submit', $landing, str_replace(';', ',', $origin), $course]) . "\n",
+    FILE_APPEND | LOCK_EX);
 
 if (!$mailOk && !$sheetOk) out(500, false);
 out(200, true);

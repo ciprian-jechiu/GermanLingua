@@ -1,3 +1,4 @@
+import { alternates } from "@/lib/seo";
 import type { Metadata } from "next";
 import { Icon, type IconName } from "@/components/Icon";
 import { CtaBand, PageHero, SectionHeading, StepCards } from "@/components/ui";
@@ -7,8 +8,8 @@ import { getDictionary } from "@/i18n";
 const stepIcons: IconName[] = ["ear", "eye", "repeat", "chat"];
 
 export async function generateMetadata({ params }: PageProps<"/[lang]/about">): Promise<Metadata> {
-  const { dict } = getDictionary((await params).lang);
-  return { title: dict.nav.about, description: dict.aboutPage.lead };
+  const { lang, dict } = getDictionary((await params).lang);
+  return { alternates: alternates(lang, "/about"), title: dict.nav.about, description: dict.aboutPage.lead };
 }
 
 export default async function AboutPage({ params }: PageProps<"/[lang]/about">) {

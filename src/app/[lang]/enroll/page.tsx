@@ -1,3 +1,4 @@
+import { alternates } from "@/lib/seo";
 import type { Metadata } from "next";
 import { Icon } from "@/components/Icon";
 import LeadForm from "@/components/LeadForm";
@@ -6,8 +7,8 @@ import { site } from "@/data/site";
 import { getDictionary } from "@/i18n";
 
 export async function generateMetadata({ params }: PageProps<"/[lang]/enroll">): Promise<Metadata> {
-  const { dict } = getDictionary((await params).lang);
-  return { title: dict.nav.enroll, description: dict.form.subtitle };
+  const { lang, dict } = getDictionary((await params).lang);
+  return { alternates: alternates(lang, "/enroll"), title: dict.nav.enroll, description: dict.form.subtitle };
 }
 
 export default async function EnrollPage({ params }: PageProps<"/[lang]/enroll">) {

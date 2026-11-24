@@ -1,3 +1,4 @@
+import { alternates } from "@/lib/seo";
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { Icon } from "@/components/Icon";
@@ -13,11 +14,11 @@ export function generateStaticParams() {
 
 export async function generateMetadata({ params }: PageProps<"/[lang]/courses/[slug]">): Promise<Metadata> {
   const { lang, slug } = await params;
-  const { dict } = getDictionary(lang);
+  const { lang: l, dict } = getDictionary(lang);
   const course = getCourse(slug);
   if (!course) return {};
   const c = dict.courses[course.slug];
-  return { title: c.title, description: c.short };
+  return { alternates: alternates(l, `/courses/${course.slug}`), title: c.title, description: c.short };
 }
 
 export default async function CoursePage({ params }: PageProps<"/[lang]/courses/[slug]">) {

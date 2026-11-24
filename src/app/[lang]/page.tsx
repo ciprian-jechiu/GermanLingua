@@ -1,3 +1,5 @@
+import type { Metadata } from "next";
+import { alternates } from "@/lib/seo";
 import Link from "next/link";
 import Hero from "@/components/Hero";
 import { Icon, type IconName } from "@/components/Icon";
@@ -10,6 +12,11 @@ import { getDictionary } from "@/i18n";
 const featureIcons: IconName[] = ["gift", "cap", "book", "award"];
 const statIcons: IconName[] = ["cap", "laptop", "target", "chat"];
 const stepIcons: IconName[] = ["ear", "eye", "repeat", "chat"];
+
+export async function generateMetadata({ params }: PageProps<"/[lang]">): Promise<Metadata> {
+  const { lang } = getDictionary((await params).lang);
+  return { alternates: alternates(lang) };
+}
 
 export default async function HomePage({ params }: PageProps<"/[lang]">) {
   const { lang, dict } = getDictionary((await params).lang);

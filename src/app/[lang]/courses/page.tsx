@@ -1,3 +1,4 @@
+import { alternates } from "@/lib/seo";
 import type { Metadata } from "next";
 import { Icon } from "@/components/Icon";
 import { CourseCard, CtaBand, PageHero } from "@/components/ui";
@@ -6,8 +7,8 @@ import { media } from "@/data/site";
 import { getDictionary } from "@/i18n";
 
 export async function generateMetadata({ params }: PageProps<"/[lang]/courses">): Promise<Metadata> {
-  const { dict } = getDictionary((await params).lang);
-  return { title: dict.coursesPage.title, description: dict.coursesPage.lead };
+  const { lang, dict } = getDictionary((await params).lang);
+  return { alternates: alternates(lang, "/courses"), title: dict.coursesPage.title, description: dict.coursesPage.lead };
 }
 
 export default async function CoursesPage({ params }: PageProps<"/[lang]/courses">) {
