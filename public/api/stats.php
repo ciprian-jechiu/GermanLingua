@@ -12,7 +12,7 @@ if (empty($cfg['stats_key']) || !hash_equals((string)$cfg['stats_key'], (string)
 $days = max(1, min(365, (int)($_GET['zile'] ?? 30)));
 $since = date('Y-m-d H:i:s', time() - $days * 86400);
 $names = [
-    'form_submit' => 'Formulare trimise', 'phone_click' => 'Apăsări pe telefon', 'whatsapp_click' => 'WhatsApp',
+    'form_submit' => 'Formulare trimise', 'phone_click' => 'Apeluri telefonice', 'whatsapp_click' => 'WhatsApp',
     'telegram_click' => 'Telegram', 'email_click' => 'Email', 'social_click' => 'Facebook / Instagram',
 ];
 $byEvent = array_fill_keys(array_keys($names), 0);
@@ -49,5 +49,5 @@ th{background:#ffd25a}.n{text-align:right}.tabs a{margin-right:10px;color:#c4122
 <h2>Pe zile</h2>
 <table><tr><th>Ziua</th><?php foreach ($names as $n): ?><th><?= $h($n) ?></th><?php endforeach; ?></tr>
 <?php foreach ($byDay as $day => $row): ?><tr><td><?= $h($day) ?></td><?php foreach ($names as $e => $n): ?><td class="n"><?= $row[$e] ?? 0 ?></td><?php endforeach; ?></tr><?php endforeach; ?></table>
-<p style="color:#6b5d52">„Apăsări pe telefon” = câți au apăsat pe număr pe site (pe telefon pornește apelul). Apelurile făcute de pe numărul văzut în reclamă sau pe hartă nu apar aici.</p>
+<p style="color:#6b5d52">„Apeluri telefonice” = câți au apăsat pe numărul de telefon de pe site (pe telefon se deschide apelul). Apelurile făcute de pe numărul văzut în reclamă sau pe hartă nu apar aici.</p>
 </body></html>
